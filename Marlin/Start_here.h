@@ -71,11 +71,11 @@
 
 //(Step 3) enable 1 if you have mixing or multi extruder
 //#define MIX      // Enable Mixing    2 in 1 - 1 Virtual Stepper (M)
-//#define CYCLOPS  // Enable Cyclops   2 in 1 - #Physical Stepper (C) 
-//#define DUALEX   // 2 Extruders      2 in 2 - #Physical Stepper (D) 
 //#define MIXT     // Enable Mixing    3 in 1 - 1 Virtual Stepper (T)
-//#define CYCLOPST // Enable Cyclops   3 in 1 - #Physical Stepper (CT)
-//#define TRIEX    // 3 Extruders      3 in 3 - #Physical Stepper (E3)
+//#define CYCLOPS  // Enable Cyclops   2 in 1 - 2 Physical Stepper (C) 
+//#define CYCLOPST // Enable Cyclops   3 in 1 - 3 Physical Stepper (CT)
+//#define DUALEX   // 2 Extruders      2 in 2 - 2 Physical Stepper (D) 
+//#define TRIEX    // 3 Extruders      3 in 3 - 3 Physical Stepper (E3)
  
 //(Step 4) enable 1 probe type or none for manual (stock) - No GTM32 probe support yet
 //#define TOUCHPROBE  // Enable Touch Type Probe (Bltouch / 3Dtouch)
