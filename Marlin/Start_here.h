@@ -225,4 +225,3 @@
   #define INVERTXYZ   // Invert XYZ direction disable if wrong direction. 
 #endif
 
-#define VERTCHECK_S
