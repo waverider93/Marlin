@@ -87,7 +87,7 @@
 //Optional settings & features |
 //------------------------------
 
-//Probe Options
+//Probe settings
 //#define PROBE5X          // Probe 5X take the average - May effect accuracy +-
 //#define HEATERACCURACY   // Disable heaters while probing - May effect accuracy +-
 //#define HALFSPEED        // Reduce probing speed by 50% = 120 - May effect accuracy +-
