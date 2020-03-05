@@ -6,8 +6,7 @@
 // Ctrl+click to open links
 #define Youtube             "https://youtube.com/verta"
 #define Discord             "https://discord.gg/brq79WQ"
-#define Forum               "http://www.vertshobbies.com/"
-#define PO_Box              "https://youtube.com/verta/about" 
+#define Forum               "http://www.vertshobbies.com/" 
 #define Paypal              "https://www.paypal.me/vertabreaker"
 #define Patreon             "https://www.patreon.com/vertabreaker"
 #define GitHub              "https://github.com/Vertabreak/Marlin"
