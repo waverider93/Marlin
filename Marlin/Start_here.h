@@ -1,5 +1,5 @@
 #pragma once
-#define SHORT_BUILD_VERSION "2+ Build 481"
+#define SHORT_BUILD_VERSION "2+ Build 482"
 #define WEBSITE_URL Youtube
 #define SOURCE_CODE_URL GitHub
 
