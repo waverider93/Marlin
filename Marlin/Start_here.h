@@ -12,7 +12,6 @@
 #define Patreon             "https://www.patreon.com/vertabreaker"
 #define GitHub              "https://github.com/Vertabreak/Marlin"
 #define Thingivese          "https://www.thingiverse.com/Vertabreaker"
-#define Geeetech_Forum      "https://www.geeetech.com/forum/viewtopic.php?f=20&t=69957"
 #define Contributed_Code    "https://github.com/MarlinFirmware/Marlin/commits/bugfix-2.0.x?author=Vertabreak"
 
 //-------------------------------------------------------------------------------------------------------------------------
