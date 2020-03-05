@@ -35,8 +35,8 @@
 //#define I3PROX      // I3PROX & Variants
 
 //GTM32 Boards - vscode: default_envs = STM32F103VE_GTM32 in platformio.ini
-//#define GTA30       // A30 & Variants
-//#define GTE180      // E180 & Variants
+//#define GTA30       // A30 & Variants  - testing
+//#define GTE180      // E180 & Variants - testing
 //#define GTM201      // M201 & Variants - testing
 //#define GTD200      // D200 & Variants - testing
 
