@@ -151,7 +151,7 @@
  */
 #if ENABLED(THERMAL_PROTECTION_HOTENDS)
   #define THERMAL_PROTECTION_PERIOD 120        // Seconds
-  #define THERMAL_PROTECTION_HYSTERESIS 5     // Degrees Celsius
+  #define THERMAL_PROTECTION_HYSTERESIS 4     // Degrees Celsius
 
   //#define ADAPTIVE_FAN_SLOWING              // Slow part cooling fan if temperature drops
   #if BOTH(ADAPTIVE_FAN_SLOWING, PIDTEMP)
@@ -171,7 +171,7 @@
    * below 2.
    */
   #define WATCH_TEMP_PERIOD 120                // Seconds
-  #define WATCH_TEMP_INCREASE 5               // Degrees Celsius
+  #define WATCH_TEMP_INCREASE 4               // Degrees Celsius
 #endif
 
 /**
@@ -179,13 +179,13 @@
  */
 #if ENABLED(THERMAL_PROTECTION_BED)
   #define THERMAL_PROTECTION_BED_PERIOD 120    // Seconds
-  #define THERMAL_PROTECTION_BED_HYSTERESIS 5 // Degrees Celsius
+  #define THERMAL_PROTECTION_BED_HYSTERESIS 4 // Degrees Celsius
 
   /**
    * As described above, except for the bed (M140/M190/M303).
    */
   #define WATCH_BED_TEMP_PERIOD 120                // Seconds
-  #define WATCH_BED_TEMP_INCREASE 5               // Degrees Celsius
+  #define WATCH_BED_TEMP_INCREASE 4               // Degrees Celsius
 #endif
 
 /**
@@ -193,23 +193,26 @@
  */
 #if ENABLED(THERMAL_PROTECTION_CHAMBER)
   #define THERMAL_PROTECTION_CHAMBER_PERIOD 120    // Seconds
-  #define THERMAL_PROTECTION_CHAMBER_HYSTERESIS 5 // Degrees Celsius
+  #define THERMAL_PROTECTION_CHAMBER_HYSTERESIS 4 // Degrees Celsius
 
   /**
    * Heated chamber watch settings (M141/M191).
    */
   #define WATCH_CHAMBER_TEMP_PERIOD 120            // Seconds
-  #define WATCH_CHAMBER_TEMP_INCREASE 5           // Degrees Celsius
+  #define WATCH_CHAMBER_TEMP_INCREASE 4           // Degrees Celsius
 #endif
 
 #if ENABLED(PIDTEMP)
   // Add an experimental additional term to the heater power, proportional to the extrusion speed.
   // A well-chosen Kc value should add just enough power to melt the increased material volume.
-  //#define PID_EXTRUSION_SCALING
+  #if ENABLED (EXTRUSIONSCALING)
+    #define PID_EXTRUSION_SCALING
   #if ENABLED(PID_EXTRUSION_SCALING)
     #define DEFAULT_Kc (100) //heating power=Kc*(e_speed)
     #define LPQ_MAX_LEN 50
   #endif
+  #endif
+#endif
 
   /**
    * Add an experimental additional term to the heater power, proportional to the fan speed.
@@ -239,7 +242,8 @@
    * 5. Enable PID_FAN_SCALING_ALTERNATIVE_DEFINITION and enter the two identified Kf-values in
    *    PID_FAN_SCALING_AT_FULL_SPEED and PID_FAN_SCALING_AT_MIN_SPEED. Enter the minimum speed in PID_FAN_SCALING_MIN_SPEED
    */
-  //#define PID_FAN_SCALING
+  #if ENABLED (FANSCALING)
+    #define PID_FAN_SCALING
   #if ENABLED(PID_FAN_SCALING)
     #define PID_FAN_SCALING_ALTERNATIVE_DEFINITION
     #if ENABLED(PID_FAN_SCALING_ALTERNATIVE_DEFINITION)
@@ -441,7 +445,7 @@
 /**
  * M355 Case Light on-off / brightness
  */
-#if ANY(GTA10, GTA20)
+#if ENABLED(CASELIGHT)
   #define CASE_LIGHT_ENABLE
 #if ENABLED(CASE_LIGHT_ENABLE)
   //#define CASE_LIGHT_PIN 6                    // Override the default pin if needed
@@ -1508,7 +1512,7 @@
  * See http://marlinfw.org/docs/features/lin_advance.html for full instructions.
  * Mention @Sebastianv650 on GitHub to alert the author of any issues.
  */
-#if DISABLED (AT1280)
+#if ENABLED (LINADV)
   #define LIN_ADVANCE
 #endif
 #if ENABLED(LIN_ADVANCE)
@@ -1619,7 +1623,7 @@
 //
 // G60/G61 Position Save and Return
 //
-#define SAVED_POSITIONS 3         // Each saved position slot costs 12 bytes
+#define SAVED_POSITIONS 2         // Each saved position slot costs 12 bytes
 
 //
 // G2/G3 Arc Support
@@ -1714,7 +1718,9 @@
 #define BLOCK_BUFFER_SIZE BUFSIZE // SD,LCD,Buttons take more memory, block buffer needs to be smaller'
 
 #if ENABLED (MCU32)
-  #define BUFSIZE 32    // serial buffer
+  #define BUFSIZE 64     // serial buffer
+#elif ENABLED (AT1280)
+  #define BUFSIZE 32     // serial buffer
 #else
   #define BUFSIZE 16     // serial buffer
 #endif  
@@ -2779,9 +2785,8 @@
 /**
  * Auto-report temperatures with M155 S<seconds>
  */
-#if ENABLED (AUTO_REPORT)
-  #define AUTO_REPORT_TEMPERATURES
-#endif
+#define AUTO_REPORT_TEMPERATURES
+
 /**
  * Include capabilities in M115 output
  */
@@ -2915,11 +2920,8 @@
   #define USER_DESC_10 "Cold Extrude Off"
   #define USER_GCODE_10 "M302 P1"
 
-  #define USER_DESC_11 "Mesh Validate"
-  #define USER_GCODE_11 "G26"
-
-  #define USER_DESC_12 "Dwell 30S"
-  #define USER_GCODE_12 "G4 S30"
+  #define USER_DESC_11 "Dwell 30S"
+  #define USER_GCODE_11 "G4 S30"
 
   #else 
 
@@ -2959,11 +2961,8 @@
   #define USER_DESC_12 "Cold Extrude Off"
   #define USER_GCODE_12 "M302 P1"
 
-  #define USER_DESC_13 "Mesh Validate"
-  #define USER_GCODE_13 "G26"
-
-  #define USER_DESC_14 "Dwell 30S"
-  #define USER_GCODE_14 "G4 S30"
+  #define USER_DESC_13 "Dwell 30S"
+  #define USER_GCODE_13 "G4 S30"
 
  #endif
 #endif
@@ -2982,7 +2981,7 @@
  * Host Prompt Support enables Marlin to use the host for user prompts so
  * filament runout and other processes can be managed from the host side.
  */
-#if DISABLED (AT1280)
+#if ENABLED (ACTIONCOMMANDS)
   #define HOST_ACTION_COMMANDS
 #endif
 #if ENABLED(HOST_ACTION_COMMANDS)

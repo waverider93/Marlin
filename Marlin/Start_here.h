@@ -83,22 +83,27 @@
 //#define TOUCHPROBE  // Enable Touch Type Probe (Bltouch / 3Dtouch)
 //#define FMP         // Enable Fixed Mounted Type Probe (Capacitive / Inductive)
 
-//---------------------------
-//Custom options & features |
-//---------------------------
+//------------------------------
+//Optional settings & features |
+//------------------------------
 
 //Probe Options
-//#define PROBE5X        // Probe 5X take the average - May effect accuracy +-
-//#define HEATERACCURACY // Disable heaters while probing - May effect accuracy +-
-//#define HALFSPEED      // Reduce probing speed by 50% = 120 - May effect accuracy +-
-//#define DOUBLESPEED    // Raise probing speed by 100% = 480 - May effect accuracy +-
+//#define PROBE5X          // Probe 5X take the average - May effect accuracy +-
+//#define HEATERACCURACY   // Disable heaters while probing - May effect accuracy +-
+//#define HALFSPEED        // Reduce probing speed by 50% = 120 - May effect accuracy +-
+//#define DOUBLESPEED      // Raise probing speed by 100% = 480 - May effect accuracy +-
 
 //Optional features
-//#define NOSCREEN   // Disable the screen and sdsupport - Save alot of resources good for octoprint users
-//#define PLR        // Enabled power loss resume - Only functions from SDcard
-//#define RUNOUT     // Enable filament runout sensor - Only If you have them and want to use them
-//#define BEDCLIPS   // Enable to avoid bed clips (manual or probe) - Only If you have them and want to use them
-//#define AUTO_REPORT// Enable auto report Temp - May make readings more reliable by auto sending status
+//#define NOSCREEN         // Disable the screen and sdsupport - Save alot of resources good for octoprint users
+//#define PLR              // Enabled power loss resume - Only functions from SDcard
+//#define RUNOUT           // Enable filament runout sensor - Only If you have them and want to use them
+//#define BEDCLIPS         // Enable to avoid bed clips (manual or probe) - Only If you have them and want to use them
+//#define LINADV           // Enable linear advance.
+//#define CASELIGHT        // Enable case light menu if board has led header.
+//#define FANSCALING       // Enabled PID FAN SCALING
+//#define EXTRUSIONSCALING // Enabled PID EXTRUSION SCALING
+//#define ACTIONCOMMANDS   // Enable ACTION COMMANDS for use with octoprint
+//#define MESHVALIDATE     // Enable G26 mesh validation does not work well in my testing
 
 //Custom driver set if none enabled in step 2
 //#define CUSTOMDRIVERS     // Define Custom drivers 

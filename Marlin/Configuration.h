@@ -533,7 +533,9 @@
   //#define PID_DEBUG             // Sends debug data to the serial port.
   //#define PID_OPENLOOP 1        // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
   //#define SLOW_PWM_HEATERS      // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay
-  #define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
+  #if ENABLED (DULEX) || ENABLED (TRIEX)
+    #define PID_PARAMS_PER_HOTEND   // Uses separate PID parameters for each extruder (useful for mismatched extruders)
+  #endif
                                   // Set/get with gcode: M301 E[extruder number, 0-2]
   #define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
@@ -1713,7 +1715,7 @@
   /**
    * Enable the G26 Mesh Validation Pattern tool.
    */
-  #if DISABLED (AT1280)
+  #if ENABLED (MESHVALIDATE)
     #define G26_MESH_VALIDATION
   #if ENABLED(G26_MESH_VALIDATION)
     #define MESH_TEST_NOZZLE_SIZE    1.0  // (mm) Diameter of primary nozzle.
@@ -1808,7 +1810,7 @@
  * Commands to execute at the end of G29 probing.
  * Useful to retract or move the Z probe out of the way.
  */
-#define Z_PROBE_END_SCRIPT "G28XY"
+//#define Z_PROBE_END_SCRIPT "G28XY"
 
 
 // @section homing
@@ -1957,8 +1959,8 @@
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
   #define NOZZLE_PARK_POINT { X_MIN_POS, Y_MAX_POS , 20 }
-  #define NOZZLE_PARK_XY_FEEDRATE 20    // (mm/s) X and Y axes feedrate (also used for delta Z axis)
-  #define NOZZLE_PARK_Z_FEEDRATE  4     // (mm/s) Z axis feedrate (not used for delta printers)
+  #define NOZZLE_PARK_XY_FEEDRATE (HOMING_FEEDRATE_XY / 60)    // (mm/s) X and Y axes feedrate (also used for delta Z axis)
+  #define NOZZLE_PARK_Z_FEEDRATE  (HOMING_FEEDRATE_Z / 60)     // (mm/s) Z axis feedrate (not used for delta printers)
 #endif
 
 /**
@@ -2140,9 +2142,7 @@
  * just remove some extraneous menu items to recover space.
  */
 //#define NO_LCD_MENUS
-#if ENABLED (AT1280)
-  #define SLIM_LCD_MENUS   //removes most advanced configuration menus
-#endif
+#define SLIM_LCD_MENUS   //removes most advanced configuration menus
 
 //
 // ENCODER SETTINGS
