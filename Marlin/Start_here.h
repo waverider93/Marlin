@@ -43,7 +43,19 @@
 //Melzi Boards - vscode: default_envs = melzi in platformio.ini
 //#define ENDER3      // ENDER3 & Variants - testing 
 
-//(Step 2) enable 1 driver setting or none for stock
+//(Step 2) enable 1 if you have mixing or multi extruder (Variant)
+//#define MIX      // Enable Mixing    2 in 1 - 1 Virtual Stepper (M)
+//#define MIXT     // Enable Mixing    3 in 1 - 1 Virtual Stepper (T)
+//#define CYCLOPS  // Enable Cyclops   2 in 1 - 2 Physical Stepper (C) 
+//#define CYCLOPST // Enable Cyclops   3 in 1 - 3 Physical Stepper (CT)
+//#define DUALEX   // 2 Extruders      2 in 2 - 2 Physical Stepper (D) 
+//#define TRIEX    // 3 Extruders      3 in 3 - 3 Physical Stepper (E3)
+
+//---------------
+//Hardware Mods |
+//---------------
+
+//(Driver Mods) enable 1 (MOD) driver type or none for (Stock)
 //#define A5984      // Enable A5984   all drivers
 //#define DRV8825    // Enable DRV8825 all drivers
 //#define LV8729     // Enable LV8729  all drivers
@@ -69,41 +81,7 @@
 //#define TMC5130U   // Enable TMC5130 UART/SPI all drivers
 //#define TMC5160U   // Enable TMC5160 UART/SPI all drivers
 
-//(Step 3) enable 1 if you have mixing or multi extruder
-//#define MIX      // Enable Mixing    2 in 1 - 1 Virtual Stepper (M)
-//#define MIXT     // Enable Mixing    3 in 1 - 1 Virtual Stepper (T)
-//#define CYCLOPS  // Enable Cyclops   2 in 1 - 2 Physical Stepper (C) 
-//#define CYCLOPST // Enable Cyclops   3 in 1 - 3 Physical Stepper (CT)
-//#define DUALEX   // 2 Extruders      2 in 2 - 2 Physical Stepper (D) 
-//#define TRIEX    // 3 Extruders      3 in 3 - 3 Physical Stepper (E3)
- 
-//(Step 4) enable 1 probe type or none for manual (stock) - No GTM32 probe support yet
-//#define TOUCHPROBE  // Enable Touch Type Probe (Bltouch / 3Dtouch)
-//#define FMP         // Enable Fixed Mounted Type Probe (Capacitive / Inductive)
-
-//------------------------------
-//Optional settings & features |
-//------------------------------
-
-//Probe settings
-//#define PROBE5X          // Probe 5X take the average - May effect accuracy +-
-//#define HEATERACCURACY   // Disable heaters while probing - May effect accuracy +-
-//#define HALFSPEED        // Reduce probing speed by 50% = 120 - May effect accuracy +-
-//#define DOUBLESPEED      // Raise probing speed by 100% = 480 - May effect accuracy +-
-
-//Optional features
-//#define NOSCREEN         // Disable the screen and sdsupport - Save alot of resources good for octoprint users
-//#define PLR              // Enabled power loss resume - Only functions from SDcard
-//#define RUNOUT           // Enable filament runout sensor - Only If you have them and want to use them
-//#define BEDCLIPS         // Enable to avoid bed clips (manual or probe) - Only If you have them and want to use them
-//#define LINADV           // Enable linear advance.
-//#define CASELIGHT        // Enable case light menu if board has led header.
-//#define FANSCALING       // Enabled PID FAN SCALING
-//#define EXTRUSIONSCALING // Enabled PID EXTRUSION SCALING
-//#define ACTIONCOMMANDS   // Enable ACTION COMMANDS for use with octoprint
-//#define MESHVALIDATE     // Enable G26 mesh validation does not work well in my testing
-
-//Custom driver set if none enabled in step 2
+//Custom driver set 
 //#define CUSTOMDRIVERS     // Define Custom drivers 
 #if ENABLED (CUSTOMDRIVERS)
    //'A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160'
@@ -126,7 +104,33 @@
 
 #endif
 
-//Used to switch the default board of the model selected above
+//(Probe Mod) enable 1 (Mod) probe type or none for manual (Stock) - No GTM32 probe support yet
+//#define TOUCHPROBE  // Enable Touch Type Probe (Bltouch / 3Dtouch)
+//#define FMP         // Enable Fixed Mounted Type Probe (Capacitive / Inductive)
+
+//Probe settings
+//#define PROBE5X          // Probe 5X take the average - May effect accuracy +-
+//#define HEATERACCURACY   // Disable heaters while probing - May effect accuracy +-
+//#define HALFSPEED        // Reduce probing speed by 50% = 120 - May effect accuracy +-
+//#define DOUBLESPEED      // Raise probing speed by 100% = 480 - May effect accuracy +-
+
+//------------------------------
+//Optional settings & features |
+//------------------------------
+
+//Optional features
+//#define NOSCREEN         // Disable the screen and sdsupport - Save alot of resources good for octoprint users
+//#define PLR              // Enabled power loss resume - Only functions from SDcard
+//#define RUNOUT           // Enable filament runout sensor - Only If you have them and want to use them
+//#define BEDCLIPS         // Enable to avoid bed clips (manual or probe) - Only If you have them and want to use them
+//#define LINADV           // Enable linear advance.
+//#define CASELIGHT        // Enable case light menu if board has led header.
+//#define FANSCALING       // Enabled PID FAN SCALING
+//#define EXTRUSIONSCALING // Enabled PID EXTRUSION SCALING
+//#define ACTIONCOMMANDS   // Enable ACTION COMMANDS for use with octoprint
+//#define MESHVALIDATE     // Enable G26 mesh validation does not work well in my testing
+
+//Used to switch the default board of the model selected in step 1
 //#define CUSTOMBOARD // Enable Custom Board
 #if ENABLED (CUSTOMBOARD)
   #define MOTHERBOARD BOARD_RAMPS_14_EFB  // Board list in src/pins/pins.h
