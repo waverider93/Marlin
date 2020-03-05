@@ -1,4 +1,4 @@
-Vert's Marlin 2+ 3D Printer Firmware
+Vert's Marlin Stable 2.0.X 3D Printer Firmware
 
 This is a custom fork based on the latest marlin source and updated often.
 
