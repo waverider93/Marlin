@@ -1,17 +1,15 @@
-Vert's Marlin Stable 2.0.X 3D Printer Firmware
+Vert's Marlin 2+ 3D Printer Firmware
 
-This is a custom fork based on the latest marlin source and updated often.
+This is a custom fork based on the latest marlin source.
 
 The primary difference is in ideology, i believe there should be a single configuration file for many if not all 3dprinters 
 to promote synergy and a more uniform experience.
 
-This being said i am a marlin developer and do submit my work upstream(vanilla) assuming they wish to accept it, this is my flavor of marlin(chocolate swirl with sprinkles).
+This being said i am a marlin developer and do submit my work upstream (vanilla) assuming they wish to accept it, this is my flavor of marlin (chocolate swirl with sprinkles).
 
 Currently integrated models include Supported Models: :A10(C/CT/D/E3/M/T)/A20(C/CT/D/E3/M/T)/A30(C/CT/D/E3/M/T)/I3PRO(A/B/C/W/X/C/CT/D/E3/M/T)/E180/D200/M201/Ender3 & there variants hundreds of combinations + more will be added.
 
 If you expect this fork to be maintained and technical support for it, I’m going to need your support in return to make it all happen.
-
-The dev-build branch is the development version once tested it is moved to release section and a new build# is started.
 
 Additional features/models/ect integration can be requested and donations are a great motivation, you may also submit pull requests if you would rather code it your self and request it be merged.
 
@@ -37,7 +35,7 @@ Contributed To Source: https://github.com/MarlinFirmware/Marlin/commits/bugfix-2
 
 Building Vert's Marlin 2+
 
-To build Vert's Marlin 2+ you'll need Vscode + (PlatformIO) & Or (Marlin Auto Build) Extention.
+To build Vert's Marlin 2+ you need (Vscode) https://code.visualstudio.com/ + (PlatformIO) Or (Marlin Auto Build) Extention.
 
 Marlin Team Credits
 
