@@ -959,10 +959,12 @@
 #if HAS_LCD_MENU
 
   // Include a page of printer information in the LCD Main Menu
- //#define LCD_INFO_MENU
+ #if ENABLED (INFOMENU) 
+ #define LCD_INFO_MENU
   #if ENABLED(LCD_INFO_MENU)
     //#define LCD_PRINTER_INFO_IS_BOOTSCREEN // Show bootscreen(s) instead of Printer Info pages
   #endif
+ #endif
 
   // BACK menu items keep the highlight at the top
   #define TURBO_BACK_MENU_ITEM
@@ -996,13 +998,14 @@
 #define LCD_TIMEOUT_TO_STATUS 60000
 
 // Add an 'M73' G-code to set the current percentage
-#if HAS_CHARACTER_LCD || HAS_GRAPHICAL_LCD && DISABLED (AT1280)
+#if ENABLED (PROGRESSINFO)
+#if HAS_CHARACTER_LCD || HAS_GRAPHICAL_LCD
 #define LCD_SET_PROGRESS_MANUALLY
 
 // Show the E position (filament used) during printing
-//#define LCD_SHOW_E_TOTAL
+#define LCD_SHOW_E_TOTAL
 
-#if HAS_GRAPHICAL_LCD && HAS_PRINT_PROGRESS && DISABLED (AT1280)
+#if HAS_GRAPHICAL_LCD && HAS_PRINT_PROGRESS
   #define PRINT_PROGRESS_SHOW_DECIMALS // Show progress with decimal digits
   #define SHOW_REMAINING_TIME          // Display estimated time to completion
   #if ENABLED(SHOW_REMAINING_TIME)
@@ -1011,7 +1014,7 @@
   #endif
 #endif
 
-#if HAS_CHARACTER_LCD && HAS_PRINT_PROGRESS && DISABLED (AT1280)
+#if HAS_CHARACTER_LCD && HAS_PRINT_PROGRESS
   #define LCD_PROGRESS_BAR              // Show a progress bar on HD44780 LCDs for SD printing
   #if ENABLED(LCD_PROGRESS_BAR)
     #define PROGRESS_BAR_BAR_TIME 10000    // (ms) Amount of time to show the bar
@@ -1020,6 +1023,7 @@
     //#define PROGRESS_MSG_ONCE           // Show the message for MSG_TIME then clear it
     //#define LCD_PROGRESS_BAR_TEST       // Add a menu item to test the progress bar
   #endif
+#endif
 #endif
 #endif
 

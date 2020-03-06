@@ -2116,7 +2116,12 @@
  * you must uncomment the following option or it won't work.
  *
  */
-//#define SDSUPPORT
+#if DISABLED (NOSDCARD)
+  #define SDSUPPORT
+#if ENABLED (MCU32) && ENABLED (SDSUPPORT)
+  #define SDIO_SUPPORT
+#endif
+#endif
 
 /**
  * SD CARD: SPI SPEED
@@ -2379,30 +2384,22 @@
     #define ST7920_DELAY_3 DELAY_NS(200)
     #define ULTIPANEL
     #define NEWPANEL
-    #define SDSUPPORT
 #elif ENABLED (MCU32)
-    #if ENABLED (M201)
-      #define REPRAP_DISCOUNT_SMART_CONTROLLER
-      #define ULTIPANEL
-    #endif
+  #define REPRAP_DISCOUNT_SMART_CONTROLLER
+  #define ULTIPANEL
   #define NEWPANEL
-  #define SDSUPPORT
-  #define SDIO_SUPPORT
  #elif ENABLED (NEWMODEL) // Screen type & SDcard support
   //#define REPRAP_DISCOUNT_SMART_CONTROLLER
   //#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
   //#define ULTIPANEL
   //#define NEWPANEL
-  //#define SDSUPPORT
  #elif ENABLED (ENDER3)
    #define CR10_STOCKDISPLAY
    #define ULTIPANEL
-   #define SDSUPPORT 
  #else //A10 - I3pro
   #define REPRAP_DISCOUNT_SMART_CONTROLLER
   #define ULTIPANEL
   #define NEWPANEL
-  #define SDSUPPORT
   #endif
 #endif
 

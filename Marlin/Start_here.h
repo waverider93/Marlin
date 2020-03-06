@@ -119,7 +119,6 @@
 //------------------------------
 
 //Optional features
-//#define NOSCREEN         // Disable the screen and sdsupport - Save alot of resources good for octoprint users
 //#define PLR              // Enabled power loss resume - Only functions from SDcard
 //#define RUNOUT           // Enable filament runout sensor - Only If you have them and want to use them
 //#define BEDCLIPS         // Enable to avoid bed clips (manual or probe) - Only If you have them and want to use them
@@ -129,6 +128,11 @@
 //#define EXTRUSIONSCALING // Enabled PID EXTRUSION SCALING
 //#define ACTIONCOMMANDS   // Enable ACTION COMMANDS for use with octoprint
 //#define MESHVALIDATE     // Enable G26 mesh validation does not work well in my testing
+//#define INFOMENU         // Enable info menu displays some basic info
+//#define PROGRESSINFO     // Enable print progress info display
+
+//#define NOSCREEN         // Disable the screen - Save alot of resources good for octoprint users
+//#define NOSDCARD         // Disable the sdcard slot - Save alot of resources good for octoprint users 
 
 //Used to switch the default board of the model selected in step 1
 //#define CUSTOMBOARD // Enable Custom Board
