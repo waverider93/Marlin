@@ -2142,7 +2142,9 @@
  * just remove some extraneous menu items to recover space.
  */
 //#define NO_LCD_MENUS
-#define SLIM_LCD_MENUS   //removes most advanced configuration menus
+#if ENABLED (AT1280)
+  #define SLIM_LCD_MENUS   //removes most advanced configuration menus
+#endif
 
 //
 // ENCODER SETTINGS
