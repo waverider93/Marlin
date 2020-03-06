@@ -996,23 +996,23 @@
 #define LCD_TIMEOUT_TO_STATUS 60000
 
 // Add an 'M73' G-code to set the current percentage
-#if HAS_CHARACTER_LCD || HAS_GRAPHICAL_LCD
-//#define LCD_SET_PROGRESS_MANUALLY
+#if HAS_CHARACTER_LCD || HAS_GRAPHICAL_LCD && DISABLED (AT1280)
+#define LCD_SET_PROGRESS_MANUALLY
 
 // Show the E position (filament used) during printing
 //#define LCD_SHOW_E_TOTAL
 
-#if HAS_GRAPHICAL_LCD && HAS_PRINT_PROGRESS
-  //#define PRINT_PROGRESS_SHOW_DECIMALS // Show progress with decimal digits
-  //#define SHOW_REMAINING_TIME          // Display estimated time to completion
+#if HAS_GRAPHICAL_LCD && HAS_PRINT_PROGRESS && DISABLED (AT1280)
+  #define PRINT_PROGRESS_SHOW_DECIMALS // Show progress with decimal digits
+  #define SHOW_REMAINING_TIME          // Display estimated time to completion
   #if ENABLED(SHOW_REMAINING_TIME)
     #define USE_M73_REMAINING_TIME     // Use remaining time from M73 command instead of estimation
     #define ROTATE_PROGRESS_DISPLAY    // Display (P)rogress, (E)lapsed, and (R)emaining time
   #endif
 #endif
 
-#if HAS_CHARACTER_LCD && HAS_PRINT_PROGRESS
-  //#define LCD_PROGRESS_BAR              // Show a progress bar on HD44780 LCDs for SD printing
+#if HAS_CHARACTER_LCD && HAS_PRINT_PROGRESS && DISABLED (AT1280)
+  #define LCD_PROGRESS_BAR              // Show a progress bar on HD44780 LCDs for SD printing
   #if ENABLED(LCD_PROGRESS_BAR)
     #define PROGRESS_BAR_BAR_TIME 10000    // (ms) Amount of time to show the bar
     #define PROGRESS_BAR_MSG_TIME 2500    // (ms) Amount of time to show the status message
