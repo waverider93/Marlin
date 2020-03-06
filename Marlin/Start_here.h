@@ -1,7 +1,5 @@
 #pragma once
 #define SHORT_BUILD_VERSION "2+ Build 483"
-#define WEBSITE_URL Youtube
-#define SOURCE_CODE_URL GitHub
 
 // Ctrl+click to open links
 #define Youtube             "https://youtube.com/verta"
