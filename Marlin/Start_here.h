@@ -1,5 +1,5 @@
 #pragma once
-#define SHORT_BUILD_VERSION "2+ Build 483"
+#define SHORT_BUILD_VERSION "2+ Build 484"
 
 // Ctrl+click to open links
 #define Youtube             "https://youtube.com/verta"
