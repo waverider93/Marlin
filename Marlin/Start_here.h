@@ -229,11 +229,13 @@
 #if ENABLED (TMCCHIPS) && DISABLED (MULTIEXTRUDER) || DISABLED (TMCCHIPS) && ENABLED (MULTIEXTRUDER)
   #define INVERTE     // Invert E direction disabe if wrong direction - Geared exturders invert E (stock)
 #else
-  //#define INVERTE // enable to force on
+  //#define INVERTE // Enable to force on
 #endif 
 
 #if ENABLED (TMCCHIPS)
-  #define INVERTXYZ   // Invert XYZ direction disable if wrong direction. 
+  #define INVERTXYZ   // Invert XYZ direction disable if wrong direction.
+#else
+  //#define INVERTXYZ   // Enable to force on   
 #endif
 
 #define VALID_START
