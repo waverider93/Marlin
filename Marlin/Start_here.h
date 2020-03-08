@@ -47,14 +47,15 @@
 //SKR Boards - vscode: default_envs = #default_envs = LPC1769
 //#define BEAR_TURBO   // Bear MK3s Turbo & Variants - tesing 
 
-//(Step 2) enable 1 if you have mixing or multi extruder Or BMG (Variant)
+//(Step 2) enable 1 if you have mixing or multi extruder or BMG (Variant)
 //#define MIX      // Enable Mixing    2 in 1 - 1 Virtual Stepper (M)
 //#define MIXT     // Enable Mixing    3 in 1 - 1 Virtual Stepper (T)
 //#define CYCLOPS  // Enable Cyclops   2 in 1 - 2 Physical Stepper (C) 
 //#define CYCLOPST // Enable Cyclops   3 in 1 - 3 Physical Stepper (CT)
 //#define DUALEX   // 2 Extruders      2 in 2 - 2 Physical Stepper (D) 
 //#define TRIEX    // 3 Extruders      3 in 3 - 3 Physical Stepper (E3)
-//#define BMG      // Single BMG dual drive extruder
+//#define BMG      // Single BMG dual drive extruder               (BMG)
+
 //---------------
 //Hardware Mods |
 //---------------
@@ -237,8 +238,7 @@
   #elif DISABLED (MULTIEXTRUDER) && ENABLED (BEAR)
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 280 }  //stock
   #elif ENABLED (MULTIEXTRUDER) && ENABLED (BEAR)  
-    //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 830 }  // BMG
-
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 830 }  // BMG
 #endif
 
 //Motor direction logic
