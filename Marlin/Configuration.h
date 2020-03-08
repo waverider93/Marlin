@@ -105,7 +105,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#if ENABLED (MCU32)
+#if ENABLED (MCU32) && DISABLED (BEAR)
   #define SERIAL_PORT 1
   //#define SERIAL_PORT_2 2
 #elif ANY(AT2560, AT1280)
@@ -114,9 +114,12 @@
 #elif ENABLED (NEWMODEL) 
   #define SERIAL_PORT 0
   //#define SERIAL_PORT_2 -1
-#else
+#elif ENABLED (BEAR)
   #define SERIAL_PORT 0
   #define SERIAL_PORT_2 -1
+#else 
+  #define SERIAL_PORT 0
+  #define SERIAL_PORT_2 -1  
 #endif
 
 /**
@@ -162,6 +165,8 @@
   #define MOTHERBOARD BOARD_GTM32_REV_B
 #elif ENABLED (ENDER3)
   #define MOTHERBOARD BOARD_MELZI_CREALITY  
+#elif ENABLED (BEAR)
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4
 #elif ENABLED (NEWMODEL) //Replace NEW MODEL with real name
   #define MOTHERBOARD BOARD_RAMPS_14_EFB   // define new models mainboard
  #endif 
@@ -454,10 +459,21 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 1
+#if ENABLED (BEAR)
+  #define TEMP_SENSOR_0 5
+#else
+  #define TEMP_SENSOR_0 1
+#endif
 
-#if ENABLED (DUALEX)
+#if ENABLED (BEAR) && ENABLED (DUALEX)
+  #define TEMP_SENSOR_1 5
+#elif ENABLED (DUALEX)
   #define TEMP_SENSOR_1 1
+#endif
+
+#if ENABLED (BEAR) && ENABLED (TRIEX)
+  #define TEMP_SENSOR_1 5
+  #define TEMP_SENSOR_1 5
 #elif ENABLED (TRIEX)
   #define TEMP_SENSOR_1 1
   #define TEMP_SENSOR_2 1
@@ -506,7 +522,12 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
+#if ENABLED (BEAR)
+#define MAXHOTENDTEMP 290  // Max hotend temp 260
+#else
 #define MAXHOTENDTEMP 260  // Max hotend temp 260
+#endif
+
 #define HEATER_0_MAXTEMP (MAXHOTENDTEMP + 15)
 #define HEATER_1_MAXTEMP (MAXHOTENDTEMP + 15)
 #define HEATER_2_MAXTEMP (MAXHOTENDTEMP + 15)
@@ -565,6 +586,10 @@
     #define DEFAULT_Kp 21.73
     #define DEFAULT_Ki 1.54
     #define DEFAULT_Kd 76.55  
+  #elif ENABLED (BEAR)
+    #define DEFAULT_Kp 16.13
+    #define DEFAULT_Ki 1.16
+    #define DEFAULT_Kd 56.23 
   #elif ENABLED (NEWMODEL) // Hotend PID
     #define  DEFAULT_Kp 1
     #define  DEFAULT_Ki 1
@@ -625,6 +650,10 @@
     #define  DEFAULT_bedKp 369.610
     #define  DEFAULT_bedKi 54.132
     #define  DEFAULT_bedKd 602.870
+  #elif ENABLED (BEAR)
+    #define DEFAULT_bedKp 126.13
+    #define DEFAULT_bedKi 4.30
+    #define DEFAULT_bedKd 924.76  
   #elif ENABLED (NEWMODEL) // BED PID
     #define  DEFAULT_bedKp 1
     #define  DEFAULT_bedKi 1
@@ -717,7 +746,7 @@
   //#define USE_XMAX_PLUG
   //#define USE_YMAX_PLUG
   //#define USE_ZMAX_PLUG
-#else //A10 & A20 & A30
+#else //A10 & A20 & A30 & BEAR
   #define USE_XMIN_PLUG
   #define USE_YMIN_PLUG
   #define USE_ZMIN_PLUG
@@ -750,7 +779,7 @@
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#if ANY(ENDER3, GTM201, I3PROA, I3PROB, I3PROC, I3PROW, I3PROX)
+#if ANY(ENDER3, GTM201, I3PROA, I3PROB, I3PROC, I3PROW, I3PROX, BEAR)
   #define X_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
   #define Y_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
   #define Z_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
@@ -817,26 +846,31 @@
 //#define E6_DRIVER_TYPE A4988
 //#define E7_DRIVER_TYPE A4988
 
+#if ENABLED (A4988)
+   #define X_DRIVER_TYPE  A4988
+   #define Y_DRIVER_TYPE  A4988
+   #define Z_DRIVER_TYPE  A4988
+   #define Z2_DRIVER_TYPE A4988
+   #define E0_DRIVER_TYPE A4988
+   #define E1_DRIVER_TYPE A4988
+   #define E2_DRIVER_TYPE A4988
+ #endif  
+
 #if ENABLED (TMC2208S)
   #define X_DRIVER_TYPE  TMC2208_STANDALONE
   #define Y_DRIVER_TYPE  TMC2208_STANDALONE
   #define Z_DRIVER_TYPE  TMC2208_STANDALONE
+  #define Z2_DRIVER_TYPE TMC2208_STANDALONE
   #define E0_DRIVER_TYPE TMC2208_STANDALONE
   #define E1_DRIVER_TYPE TMC2208_STANDALONE
   #define E2_DRIVER_TYPE TMC2208_STANDALONE
-#else
-   #define X_DRIVER_TYPE  A4988
-   #define Y_DRIVER_TYPE  A4988
-   #define Z_DRIVER_TYPE  A4988
-   #define E0_DRIVER_TYPE A4988
-   #define E1_DRIVER_TYPE A4988
-   #define E2_DRIVER_TYPE A4988
 #endif
 
 #if ENABLED (TMC2209S)
    #define X_DRIVER_TYPE  TMC2209_STANDALONE
    #define Y_DRIVER_TYPE  TMC2209_STANDALONE
    #define Z_DRIVER_TYPE  TMC2209_STANDALONE
+   #define Z2_DRIVER_TYPE TMC2209_STANDALONE
    #define E0_DRIVER_TYPE TMC2209_STANDALONE
    #define E1_DRIVER_TYPE TMC2209_STANDALONE
    #define E2_DRIVER_TYPE TMC2209_STANDALONE
@@ -846,6 +880,7 @@
    #define X_DRIVER_TYPE  TMC2130_STANDALONE
    #define Y_DRIVER_TYPE  TMC2130_STANDALONE
    #define Z_DRIVER_TYPE  TMC2130_STANDALONE
+  #define Z2_DRIVER_TYPE  TMC2130_STANDALONE
    #define E0_DRIVER_TYPE TMC2130_STANDALONE
    #define E1_DRIVER_TYPE TMC2130_STANDALONE
    #define E2_DRIVER_TYPE TMC2130_STANDALONE
@@ -855,6 +890,7 @@
    #define X_DRIVER_TYPE  TMC2160_STANDALONE
    #define Y_DRIVER_TYPE  TMC2160_STANDALONE
    #define Z_DRIVER_TYPE  TMC2160_STANDALONE
+   #define Z2_DRIVER_TYPE  TMC2160_STANDALONE
    #define E0_DRIVER_TYPE TMC2160_STANDALONE
    #define E1_DRIVER_TYPE TMC2160_STANDALONE
    #define E2_DRIVER_TYPE TMC2160_STANDALONE
@@ -864,6 +900,7 @@
    #define X_DRIVER_TYPE  TMC26X_STANDALONE
    #define Y_DRIVER_TYPE  TMC26X_STANDALONE
    #define Z_DRIVER_TYPE  TMC26X_STANDALONE
+   #define Z2_DRIVER_TYPE  TMC26X_STANDALONE
    #define E0_DRIVER_TYPE TMC26X_STANDALONE
    #define E1_DRIVER_TYPE TMC26X_STANDALONE
    #define E2_DRIVER_TYPE TMC26X_STANDALONE
@@ -873,6 +910,7 @@
    #define X_DRIVER_TYPE  TMC2660_STANDALONE
    #define Y_DRIVER_TYPE  TMC2660_STANDALONE
    #define Z_DRIVER_TYPE  TMC2660_STANDALONE
+   #define Z2_DRIVER_TYPE  TMC2660_STANDALONE
    #define E0_DRIVER_TYPE TMC2660_STANDALONE
    #define E1_DRIVER_TYPE TMC2660_STANDALONE
    #define E2_DRIVER_TYPE TMC2660_STANDALONE
@@ -882,6 +920,7 @@
    #define X_DRIVER_TYPE  TMC5130_STANDALONE
    #define Y_DRIVER_TYPE  TMC5130_STANDALONE
    #define Z_DRIVER_TYPE  TMC5130_STANDALONE
+   #define Z2_DRIVER_TYPE  TMC5130_STANDALONE
    #define E0_DRIVER_TYPE TMC5130_STANDALONE
    #define E1_DRIVER_TYPE TMC5130_STANDALONE
    #define E2_DRIVER_TYPE TMC5130_STANDALONE
@@ -891,6 +930,7 @@
    #define X_DRIVER_TYPE  TMC5160_STANDALONE
    #define Y_DRIVER_TYPE  TMC5160_STANDALONE
    #define Z_DRIVER_TYPE  TMC5160_STANDALONE
+   #define Z2_DRIVER_TYPE  TMC5160_STANDALONE
    #define E0_DRIVER_TYPE TMC5160_STANDALONE
    #define E1_DRIVER_TYPE TMC5160_STANDALONE
    #define E2_DRIVER_TYPE TMC5160_STANDALONE
@@ -900,6 +940,7 @@
   #define X_DRIVER_TYPE  TMC2208
   #define Y_DRIVER_TYPE  TMC2208
   #define Z_DRIVER_TYPE  TMC2208
+  #define Z2_DRIVER_TYPE  TMC2208
   #define E0_DRIVER_TYPE TMC2208
   #define E1_DRIVER_TYPE TMC2208
   #define E2_DRIVER_TYPE TMC2208
@@ -909,6 +950,7 @@
    #define X_DRIVER_TYPE  TMC2209
    #define Y_DRIVER_TYPE  TMC2209
    #define Z_DRIVER_TYPE  TMC2209
+   #define Z2_DRIVER_TYPE TMC2209
    #define E0_DRIVER_TYPE TMC2209
    #define E1_DRIVER_TYPE TMC2209
    #define E2_DRIVER_TYPE TMC2209
@@ -918,6 +960,7 @@
    #define X_DRIVER_TYPE  TMC2130
    #define Y_DRIVER_TYPE  TMC2130
    #define Z_DRIVER_TYPE  TMC2130
+   #define Z2_DRIVER_TYPE  TMC2130
    #define E0_DRIVER_TYPE TMC2130
    #define E1_DRIVER_TYPE TMC2130
    #define E2_DRIVER_TYPE TMC2130
@@ -927,6 +970,7 @@
    #define X_DRIVER_TYPE  TMC2160
    #define Y_DRIVER_TYPE  TMC2160
    #define Z_DRIVER_TYPE  TMC2160
+   #define Z2_DRIVER_TYPE  TMC2160
    #define E0_DRIVER_TYPE TMC2160
    #define E1_DRIVER_TYPE TMC2160
    #define E2_DRIVER_TYPE TMC2160
@@ -936,6 +980,7 @@
    #define X_DRIVER_TYPE  TMC26X
    #define Y_DRIVER_TYPE  TMC26X
    #define Z_DRIVER_TYPE  TMC26X
+   #define Z2_DRIVER_TYPE  TMC26X
    #define E0_DRIVER_TYPE TMC26X
    #define E1_DRIVER_TYPE TMC26X
    #define E2_DRIVER_TYPE TMC26X
@@ -945,6 +990,7 @@
    #define X_DRIVER_TYPE  TMC2660
    #define Y_DRIVER_TYPE  TMC2660
    #define Z_DRIVER_TYPE  TMC2660
+   #define Z2_DRIVER_TYPE  TMC2660
    #define E0_DRIVER_TYPE TMC2660
    #define E1_DRIVER_TYPE TMC2660
    #define E2_DRIVER_TYPE TMC2660
@@ -954,6 +1000,7 @@
    #define X_DRIVER_TYPE  TMC5130
    #define Y_DRIVER_TYPE  TMC5130
    #define Z_DRIVER_TYPE  TMC5130
+   #define Z2_DRIVER_TYPE  TMC5130
    #define E0_DRIVER_TYPE TMC5130
    #define E1_DRIVER_TYPE TMC5130
    #define E2_DRIVER_TYPE TMC5130
@@ -963,6 +1010,7 @@
    #define X_DRIVER_TYPE  TMC5160
    #define Y_DRIVER_TYPE  TMC5160
    #define Z_DRIVER_TYPE  TMC5160
+   #define Z2_DRIVER_TYPE  TMC5160
    #define E0_DRIVER_TYPE TMC5160
    #define E1_DRIVER_TYPE TMC5160
    #define E2_DRIVER_TYPE TMC5160
@@ -972,6 +1020,7 @@
    #define X_DRIVER_TYPE  DRV8825
    #define Y_DRIVER_TYPE  DRV8825
    #define Z_DRIVER_TYPE  DRV8825
+   #define Z2_DRIVER_TYPE  DRV8825
    #define E0_DRIVER_TYPE DRV8825
    #define E1_DRIVER_TYPE DRV8825
    #define E2_DRIVER_TYPE DRV8825
@@ -981,6 +1030,7 @@
    #define X_DRIVER_TYPE  A5984
    #define Y_DRIVER_TYPE  A5984
    #define Z_DRIVER_TYPE  A5984
+   #define Z2_DRIVER_TYPE  A5984
    #define E0_DRIVER_TYPE A5984
    #define E1_DRIVER_TYPE A5984
    #define E2_DRIVER_TYPE A5984
@@ -990,6 +1040,7 @@
    #define X_DRIVER_TYPE  LV8729
    #define Y_DRIVER_TYPE  LV8729
    #define Z_DRIVER_TYPE  LV8729
+   #define Z2_DRIVER_TYPE  LV8729
    #define E0_DRIVER_TYPE LV8729
    #define E1_DRIVER_TYPE LV8729
    #define E2_DRIVER_TYPE LV8729
@@ -999,6 +1050,7 @@
    #define X_DRIVER_TYPE  L6470
    #define Y_DRIVER_TYPE  L6470
    #define Z_DRIVER_TYPE  L6470
+   #define Z2_DRIVER_TYPE  L6470
    #define E0_DRIVER_TYPE L6470
    #define E1_DRIVER_TYPE L6470
    #define E2_DRIVER_TYPE L6470
@@ -1008,6 +1060,7 @@
    #define X_DRIVER_TYPE  TB6560
    #define Y_DRIVER_TYPE  TB6560
    #define Z_DRIVER_TYPE  TB6560
+   #define Z2_DRIVER_TYPE  TB6560
    #define E0_DRIVER_TYPE TB6560
    #define E1_DRIVER_TYPE TB6560
    #define E2_DRIVER_TYPE TB6560
@@ -1017,6 +1070,7 @@
    #define X_DRIVER_TYPE  TB6600
    #define Y_DRIVER_TYPE  TB6600
    #define Z_DRIVER_TYPE  TB6600
+   #define Z2_DRIVER_TYPE  TB6600
    #define E0_DRIVER_TYPE TB6600
    #define E1_DRIVER_TYPE TB6600
    #define E2_DRIVER_TYPE TB6600
@@ -1038,7 +1092,9 @@
  *
  * :[2,3,4,5,6,7]
  */
+#if DISABLED (TMC2209U)
 #define ENDSTOP_NOISE_THRESHOLD 2
+#endif
 
 //=============================================================================
 //============================== Movement Settings ============================
@@ -1411,11 +1467,11 @@
   #define INVERT_X_DIR false
   #define INVERT_Y_DIR false
   #define INVERT_Z_DIR false
-#elif ENABLED (GTE180) && ENABLED(INVERTXYZ) && DISABLED (CUSTOMDRIVERS)
+#elif ENABLED (GTE180) && ENABLED(INVERTXYZ) && DISABLED (CUSTOMDRIVERS) || ENABLED (BEAR) && DISABLED (CUSTOMDRIVERS)
   #define INVERT_X_DIR true
   #define INVERT_Y_DIR false
   #define INVERT_Z_DIR true
-#elif ENABLED (GTE180) && DISABLED (CUSTOMDRIVERS)
+#elif ENABLED (GTE180) && DISABLED (CUSTOMDRIVERS) || ENABLED (BEAR) && ENABLED(INVERTXYZ) && DISABLED (CUSTOMDRIVERS)
   #define INVERT_X_DIR false
   #define INVERT_Y_DIR true
   #define INVERT_Z_DIR false
@@ -1546,6 +1602,10 @@
   #define X_BED_SIZE 235
   #define Y_BED_SIZE 235
   #define Z_MAX_POS 250
+#elif ENABLED (BEAR)
+  #define X_BED_SIZE 255
+  #define Y_BED_SIZE 212.5
+  #define Z_MAX_POS 210  
 #elif ENABLED (NEWMODEL) // Build area XYZ
   #define X_BED_SIZE 200
   #define Y_BED_SIZE 200
@@ -1570,7 +1630,9 @@
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
   #define MIN_SOFTWARE_ENDSTOP_X
   #define MIN_SOFTWARE_ENDSTOP_Y
+  #if DISABLED (BEAR)
   #define MIN_SOFTWARE_ENDSTOP_Z
+#endif
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
@@ -1596,20 +1658,27 @@
 #if ENABLED (RUNOUT)
   #define FILAMENT_RUNOUT_SENSOR 
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
+   
    #if ENABLED (MIXT) || ENABLED (CYCLOPST) || ENABLED (TRIEX)
    #define NUM_RUNOUT_SENSORS   3
+   #if DISABLED (BEAR)
    #define FIL_RUNOUT_PIN      66
    #define FIL_RUNOUT2_PIN     67
    #define FIL_RUNOUT3_PIN     68
+   #endif
    #elif ENABLED (MIX) || ENABLED (CYCLOPS) || ENABLED (DUELEX)
    #define NUM_RUNOUT_SENSORS   2
+   #if DISABLED (BEAR)
    #define FIL_RUNOUT_PIN      66
    #define FIL_RUNOUT2_PIN     67
+   #endif
    #else
    #define NUM_RUNOUT_SENSORS   1
+   #if DISABLED (BEAR)
    #define FIL_RUNOUT_PIN      66
    #endif
-   
+   #endif
+
    #define FIL_RUNOUT_INVERTING true  // set to true to invert the logic of the sensors. some geeetech filament sensors are inverted if trigger with filament loaded invert.
    #define FIL_RUNOUT_PULLUP          // Use internal pullup for filament runout pins.
    //#define FIL_RUNOUT_PULLDOWN      // Use internal pulldown for filament runout pins.
@@ -1820,9 +1889,11 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-//#define MANUAL_X_HOME_POS 0
-//#define MANUAL_Y_HOME_POS 0
-//#define MANUAL_Z_HOME_POS 0
+#if ENABLED (BEAR)
+  #define MANUAL_X_HOME_POS 0
+  #define MANUAL_Y_HOME_POS -2.2
+  #define MANUAL_Z_HOME_POS 0.2
+#endif
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
 //
@@ -2118,7 +2189,7 @@
  */
 #if DISABLED (NOSDCARD)
   #define SDSUPPORT
-#if ENABLED (MCU32) && ENABLED (SDSUPPORT)
+#if ENABLED (MCU32) && ENABLED (SDSUPPORT) && DISABLED (BEAR)
   #define SDIO_SUPPORT
 #endif
 #endif
@@ -2158,7 +2229,9 @@
 // This option overrides the default number of encoder pulses needed to
 // produce one step. Should be increased for high-resolution encoders.
 //
-//#define ENCODER_PULSES_PER_STEP 4
+#if ENABLED (BEAR)
+  #define ENCODER_PULSES_PER_STEP 4
+#endif
 
 //
 // Use this option to override the number of step signals required to
@@ -2385,7 +2458,7 @@
     #define ST7920_DELAY_3 DELAY_NS(200)
     #define ULTIPANEL
     #define NEWPANEL
-#elif ENABLED (MCU32)
+#elif ENABLED (MCU32) && DISABLED (BEAR)
   #define REPRAP_DISCOUNT_SMART_CONTROLLER
   #define ULTIPANEL
   #define NEWPANEL

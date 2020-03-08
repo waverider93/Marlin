@@ -79,7 +79,8 @@
     #define Z_MIN_PIN      P1_00   // PWRDET
   #endif
 #else
-  #define Z_STOP_PIN       P1_27   // Z-STOP
+  #define Z_STOP_PIN       P0_10   // Z-STOP
+  //#define Z_STOP_PIN       P1_27   // Z-STOP
 #endif
 
 //

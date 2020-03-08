@@ -41,6 +41,9 @@
 //Melzi Boards - vscode: default_envs = melzi in platformio.ini
 //#define ENDER3      // ENDER3 & Variants - testing 
 
+//SKR Boards - vscode: default_envs = #default_envs = LPC1768
+//#define BEAR        // Bear MK3s & Variants - tesing 
+
 //(Step 2) enable 1 if you have mixing or multi extruder (Variant)
 //#define MIX      // Enable Mixing    2 in 1 - 1 Virtual Stepper (M)
 //#define MIXT     // Enable Mixing    3 in 1 - 1 Virtual Stepper (T)
@@ -102,7 +105,7 @@
 
 #endif
 
-//(Probe Mod) enable 1 (Mod) probe type or none for manual (Stock) - No GTM32 probe support yet
+//(Probe Mod) enable 1 (Mod) probe type none = manual (stock) - No GTM32 probe support yet
 //#define TOUCHPROBE  // Enable Touch Type Probe (Bltouch / 3Dtouch)
 //#define FMP         // Enable Fixed Mounted Type Probe (Capacitive / Inductive)
 
@@ -161,7 +164,7 @@
 #endif
 
 //MCU32 board models
-#if ANY(GTA30, GTE180, GTM201, GTD200)
+#if ANY(GTA30, GTE180, GTM201, GTD200, BEAR)
   #define MCU32
 #endif
 
@@ -191,10 +194,12 @@
 #endif
 
 //Probe offset logic - suggest you mesure yours and adjust as needed. 
-#if DISABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20)
+#if DISABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20) && DISABLED (BEAR)
   #define NOZZLE_TO_PROBE_OFFSET { -38, 5, 0 } // Nozzle To Probe offset XYZ A10/A20 - this is what it is on my test machines yours could differ 
-#elif ENABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20)
+#elif ENABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20) && DISABLED (BEAR)
   #define NOZZLE_TO_PROBE_OFFSET { -40, 0, 0 }  // Nozzle To Probe offset XYZ A10M+T/A20M+T - this is what it is on my test machines yours could differ
+#elif ENABLED (BEAR)
+  #define NOZZLE_TO_PROBE_OFFSET { 23, 5, 0 }  
 #else
   #define NOZZLE_TO_PROBE_OFFSET { 0, 0, 0 }
 #endif
@@ -206,6 +211,9 @@
 #elif ANY (GTA10, GTA20, GTA30)
   #define X_MIN_POS -10  //- this is what it is on my test machines yours could differ
   #define Y_MIN_POS -5   //- this is what it is on my test machines yours could differ
+#elif ENABLED (BEAR)
+  #define X_MIN_POS 0
+  #define Y_MIN_POS -4  
 #elif ENABLED (NEWMODEL) 
   #define X_MIN_POS 0        
   #define Y_MIN_POS 0  
@@ -215,14 +223,16 @@
 #endif
 
 //Steps selection logic
-#if DISABLED (MULTIEXTRUDER) 
+#if DISABLED (MULTIEXTRUDER) && DISABLED (BEAR)
   #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 95 }  // ungeared extruder found on a10/a20/a30/i3pro
   //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 800, 95 } 
   //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 2560, 95 } // M8 Z rod steps 2560 found on old I3pro
-  #elif ENABLED (MULTIEXTRUDER)
+  #elif ENABLED (MULTIEXTRUDER) && DISABLED (BEAR)
     #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 430 } // geared extruder found on M & T variants
     //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 800, 430 } 
     //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 2560, 430 } // M8 Z rod steps 2560 found on old I3pro  
+  #elif ENABLED (BEAR)
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 280 }  
 #endif
 
 //Motor direction logic
