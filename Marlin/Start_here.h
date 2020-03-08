@@ -43,9 +43,13 @@
 
 //SKR Boards - vscode: default_envs = #default_envs = LPC1768
 //#define BEAR        // Bear MK3s & Variants - tesing 
+//#define Z320        // Enable to set Zmax to 320  
+//#define Z420        // Enable to set Zmax to 420 
 
 //SKR Boards - vscode: default_envs = #default_envs = LPC1769
 //#define BEAR_TURBO   // Bear MK3s Turbo & Variants - tesing 
+//#define ZT320        // Enable to set Zmax to 320  
+//#define ZT420        // Enable to set Zmax to 420
 
 //(Step 2) enable 1 if you have mixing or multi extruder or BMG (Variant)
 //#define MIX      // Enable Mixing    2 in 1 - 1 Virtual Stepper (M)
@@ -137,7 +141,6 @@
 //#define EXTRUSIONSCALING // Enabled PID EXTRUSION SCALING
 //#define ACTIONCOMMANDS   // Enable ACTION COMMANDS for use with octoprint
 //#define MESHVALIDATE     // Enable G26 mesh validation does not work well in my testing
-//#define INFOMENU         // Enable info menu displays some basic info
 //#define PROGRESSINFO     // Enable print progress info display
 //#define FADE             // Enable fade reduce z correction until 0 at set height 
 

@@ -1605,7 +1605,13 @@
 #elif ENABLED (BEAR)
   #define X_BED_SIZE 255
   #define Y_BED_SIZE 212.5
+  #if ENABLED (Z320) || ENABLED (ZT320)
+  #define Z_MAX_POS 320
+  #elif ENABLED (Z420) || ENABLED (ZT420)
+  #define Z_MAX_POS 420 
+  #else
   #define Z_MAX_POS 210  
+  #endif
 #elif ENABLED (NEWMODEL) // Build area XYZ
   #define X_BED_SIZE 200
   #define Y_BED_SIZE 200
