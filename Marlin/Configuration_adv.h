@@ -599,7 +599,7 @@
 //#define HOMING_BACKOFF_MM { X_MIN_POS, Y_MIN_POS, (Z_MIN_POS + 1)}  // (mm) Move away from the endstops after homing
 
 // When G28 is called, this option will make Y home before X
-#define HOME_Y_BEFORE_X
+//#define HOME_Y_BEFORE_X
 
 // Enable this if X or Y can't home without homing the other axis first.
 //#define CODEPENDENT_XY_HOMING
@@ -667,9 +667,7 @@
   //#define BLTOUCH_HS_MODE
 
   // Safety: Enable voltage mode settings in the LCD menu.
-  #if ENABLED (AT2560)
-    #define BLTOUCH_LCD_VOLTAGE_MENU
-  #endif
+  //#define BLTOUCH_LCD_VOLTAGE_MENU
 
 #endif // BLTOUCH
 
@@ -1266,7 +1264,7 @@
   #if ENABLED(U8GLIB_ST7920)
     //#define LIGHTWEIGHT_UI
     #if ENABLED(LIGHTWEIGHT_UI)
-      #define STATUS_EXPIRE_SECONDS 20
+      #define STATUS_EXPIRE_SECONDS 5
     #endif
   #endif
 
@@ -1284,7 +1282,7 @@
   #define STATUS_CUTTER_ANIM          // Use a second bitmap to indicate spindle / laser active
   #define STATUS_ALT_BED_BITMAP       // Use the alternative bed bitmap
   #define STATUS_ALT_FAN_BITMAP       // Use the alternative fan bitmap
-  #define STATUS_FAN_FRAMES 3         // :[0,1,2,3,4] Number of fan animation frames
+  //#define STATUS_FAN_FRAMES 3         // :[0,1,2,3,4] Number of fan animation frames
   #define STATUS_HEAT_PERCENT         // Show heating in a progress bar
   #define BOOT_MARLIN_LOGO_SMALL      // Show a smaller Marlin logo on the Boot Screen (saving 399 bytes of flash)
   //#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~‭3260 (or ~940) bytes of PROGMEM.
@@ -1627,7 +1625,7 @@
 //
 // G60/G61 Position Save and Return
 //
-#define SAVED_POSITIONS 2         // Each saved position slot costs 12 bytes
+#define SAVED_POSITIONS 1         // Each saved position slot costs 12 bytes
 
 //
 // G2/G3 Arc Support
@@ -1723,8 +1721,6 @@
 
 #if ENABLED (MCU32)
   #define BUFSIZE 64     // serial buffer
-#elif ENABLED (AT1280)
-  #define BUFSIZE 32     // serial buffer
 #else
   #define BUFSIZE 16     // serial buffer
 #endif  

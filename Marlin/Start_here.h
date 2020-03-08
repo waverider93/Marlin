@@ -2,14 +2,14 @@
 #define SHORT_BUILD_VERSION "2+ Build 484"
 
 // Ctrl+click to open links
-#define Youtube             "https://youtube.com/verta"
-#define Discord             "https://discord.gg/brq79WQ"
-#define Forum               "http://www.vertshobbies.com/" 
-#define Paypal              "https://www.paypal.me/vertabreaker"
-#define Patreon             "https://www.patreon.com/vertabreaker"
-#define GitHub              "https://github.com/Vertabreak/Marlin"
-#define Thingivese          "https://www.thingiverse.com/Vertabreaker"
-#define Contributed_Code    "https://github.com/MarlinFirmware/Marlin/commits/bugfix-2.0.x?author=Vertabreak"
+// Youtube             "https://youtube.com/verta"
+// Discord             "https://discord.gg/brq79WQ"
+// Forum               "http://www.vertshobbies.com/" 
+// Paypal              "https://www.paypal.me/vertabreaker"
+// Patreon             "https://www.patreon.com/vertabreaker"
+// GitHub              "https://github.com/Vertabreak/Marlin"
+// Thingivese          "https://www.thingiverse.com/Vertabreaker"
+// Contributed_Code    "https://github.com/MarlinFirmware/Marlin/commits/bugfix-2.0.x?author=Vertabreak"
 
 //-------------------------------------------------------------------------------------------------------------------------
 // Remove // to enable - add // to disable                                                                                |
@@ -107,7 +107,6 @@
 //#define FMP         // Enable Fixed Mounted Type Probe (Capacitive / Inductive)
 
 //Probe settings
-//#define PROBE5X          // Probe 5X take the average - May effect accuracy +-
 //#define HEATERACCURACY   // Disable heaters while probing - May effect accuracy +-
 //#define HALFSPEED        // Reduce probing speed by 50% = 120 - May effect accuracy +-
 //#define DOUBLESPEED      // Raise probing speed by 100% = 480 - May effect accuracy +-
@@ -128,6 +127,7 @@
 //#define MESHVALIDATE     // Enable G26 mesh validation does not work well in my testing
 //#define INFOMENU         // Enable info menu displays some basic info
 //#define PROGRESSINFO     // Enable print progress info display
+//#define FADE             // Enable fade reduce z correction until 0 at set height 
 
 //#define NOSCREEN         // Disable the screen - Save alot of resources good for octoprint users
 //#define NOSDCARD         // Disable the sdcard slot - Save alot of resources good for octoprint users 
@@ -170,8 +170,8 @@
   #define AT2560
 #endif
 
-//AT1280 board models
-#if ENABLED (ENDER3)
+//AT1280 board models (use only if disabled for at1280)
+#if ENABLED (ENDER3) && DISABLED (CUSTOMBOARD)
   #define AT1280
 #endif
 

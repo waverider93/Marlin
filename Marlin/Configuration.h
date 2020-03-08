@@ -116,7 +116,7 @@
   //#define SERIAL_PORT_2 -1
 #else
   #define SERIAL_PORT 0
-  //#define SERIAL_PORT_2 -1
+  #define SERIAL_PORT_2 -1
 #endif
 
 /**
@@ -528,8 +528,10 @@
 #define PID_MAX BANG_MAX // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 #if ENABLED(PIDTEMP)
-  //#define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
-  //#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
+  #if DISABLED (AT1280)
+  #define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
+  #define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
+  #endif
   //#define PID_DEBUG             // Sends debug data to the serial port.
   //#define PID_OPENLOOP 1        // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
   //#define SLOW_PWM_HEATERS      // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay
@@ -1087,7 +1089,7 @@
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
-  #define MAX_ACCEL_EDIT_VALUES       { 1000, 1000, 200, 10000 } // ...or, set your own edit limits
+  #define MAX_ACCEL_EDIT_VALUES       { 6000, 6000, 200, 10000 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -1321,11 +1323,7 @@
  * A total of 2 does fast/slow probes with a weighted average.
  * A total of 3 or more adds more slow probes, taking the average.
  */
-#if ENABLED (PROBE5X)
-  #define MULTIPLE_PROBING 5  // Probe 5 times take the average
-#else
-  #define MULTIPLE_PROBING 3  // Probe 3 times take the average
-#endif
+#define MULTIPLE_PROBING 3  // Probe 3 times take the average
 //#define EXTRA_PROBING    1
 
 /**
@@ -1681,10 +1679,10 @@
 #endif
 //#define MESH_BED_LEVELING
 
-#if ENABLED (AT1280)
-  #define GRIDSIZE 3   // Mesh grid size adjust as needed
-#else
+#if DISABLED (AT1280)
   #define GRIDSIZE 5   // Mesh grid size adjust as needed
+#else
+  #define GRIDSIZE 3   // Mesh grid size adjust as needed
 #endif
 
 /**
@@ -1704,7 +1702,9 @@
   // Gradually reduce leveling correction until a set height is reached,
   // at which point movement will be level to the machine's XY plane.
   // The height can be set with M420 Z<height>
-  #define ENABLE_LEVELING_FADE_HEIGHT
+  #if ENABLED (FADE)
+    #define ENABLE_LEVELING_FADE_HEIGHT
+  #endif
 
   // For Cartesian machines, instead of dividing moves on mesh boundaries,
   // split up moves into short segments like a Delta. This follows the
@@ -2100,7 +2100,7 @@
  *
  * :['JAPANESE', 'WESTERN', 'CYRILLIC']
  */
-#define DISPLAY_CHARSET_HD44780 JAPANESE
+#define DISPLAY_CHARSET_HD44780 WESTERN
 
 /**
  * Info Screen Style (0:Classic, 1:Prusa)
@@ -2147,7 +2147,8 @@
  * just remove some extraneous menu items to recover space.
  */
 //#define NO_LCD_MENUS
-#if ENABLED (AT1280)
+#if DISABLED (AT1280)
+#else
   #define SLIM_LCD_MENUS   //removes most advanced configuration menus
 #endif
 
