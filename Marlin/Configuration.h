@@ -487,6 +487,10 @@
   #define TEMP_SENSOR_BED 1
 #endif
 
+#if ENABLED (PINDA)
+  #define TEMP_SENSOR_PROBE 1
+#endif
+
 #define TEMP_SENSOR_CHAMBER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -1278,7 +1282,7 @@
  */
 #if ENABLED (TOUCHPROBE)
   #define BLTOUCH
-#elif ENABLED (FMP)
+#elif ENABLED (FMP) || ENABLED (PINDA)
   #define FIX_MOUNTED_PROBE
 #else
   #define PROBE_MANUALLY
