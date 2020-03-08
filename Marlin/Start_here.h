@@ -43,6 +43,7 @@
 
 //----------------------------------------------------------------------------------------------------
 //SKR Boards - vscode: default_envs = #default_envs = LPC1768
+//Select 1 board
 //#define BEAR        // Bear MK3s & Variants - tesing 
 //#define BEAR_TURBO   // Bear MK3s Turbo & Variants default_envs = #default_envs = LPC1769
 
