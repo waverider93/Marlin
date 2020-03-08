@@ -45,7 +45,7 @@
 //#define BEAR        // Bear MK3s & Variants - tesing 
 
 //SKR Boards - vscode: default_envs = #default_envs = LPC1769
-//#define BEARTURBO   // Bear MK3s Turbo & Variants - tesing 
+//#define BEAR_TURBO   // Bear MK3s Turbo & Variants - tesing 
 
 //(Step 2) enable 1 if you have mixing or multi extruder Or BMG (Variant)
 //#define MIX      // Enable Mixing    2 in 1 - 1 Virtual Stepper (M)
@@ -254,7 +254,7 @@
   //#define INVERTXYZ   // Enable to force on   
 #endif
 
-#if ENABLED (BEARTURBO)
+#if ENABLED (BEAR_TURBO)
 #define BEAR
 #define CUSTOMBOARD // Enable Custom Board
 #if ENABLED (CUSTOMBOARD)
