@@ -1609,9 +1609,9 @@
 #elif ENABLED (BEAR)
   #define X_BED_SIZE 255
   #define Y_BED_SIZE 212.5
-  #if ENABLED (Z320) || ENABLED (ZT320)
+  #if ENABLED (Z320)
   #define Z_MAX_POS 320
-  #elif ENABLED (Z420) || ENABLED (ZT420)
+  #elif ENABLED (Z420)
   #define Z_MAX_POS 420 
   #else
   #define Z_MAX_POS 210  

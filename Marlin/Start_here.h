@@ -41,24 +41,31 @@
 //Melzi Boards - vscode: default_envs = melzi in platformio.ini
 //#define ENDER3      // ENDER3 & Variants - testing 
 
+//----------------------------------------------------------------------------------------------------
 //SKR Boards - vscode: default_envs = #default_envs = LPC1768
 //#define BEAR        // Bear MK3s & Variants - tesing 
+//#define BEAR_TURBO   // Bear MK3s Turbo & Variants default_envs = #default_envs = LPC1769
+
+//Z Mod pick only 1 or none for stock
 //#define Z320        // Enable to change Zmax to 320  
 //#define Z420        // Enable to change Zmax to 420 
 
-//SKR Boards - vscode: default_envs = #default_envs = LPC1769
-//#define BEAR_TURBO   // Bear MK3s Turbo & Variants - tesing 
-//#define ZT320        // Enable to change Zmax to 320  
-//#define ZT420        // Enable to change Zmax to 420
+//Extruder mod pick only 1 or none for stock
+//#define BMG18       // BMG 1.8
+//#define BMG9        // BMG 0.9 
 
-//(Step 2) enable 1 if you have mixing or multi extruder or BMG (Variant)
+//XY mod mod pick only 1 or none for stock
+//#define GREYBEAR    // XY 0.9
+
+//-----------------------------------------------------------------------------------------------------
+
+//(Step 2) enable 1 if you have mixing or multi extruder (Variant)
 //#define MIX      // Enable Mixing    2 in 1 - 1 Virtual Stepper (M)
 //#define MIXT     // Enable Mixing    3 in 1 - 1 Virtual Stepper (T)
 //#define CYCLOPS  // Enable Cyclops   2 in 1 - 2 Physical Stepper (C) 
 //#define CYCLOPST // Enable Cyclops   3 in 1 - 3 Physical Stepper (CT)
 //#define DUALEX   // 2 Extruders      2 in 2 - 2 Physical Stepper (D) 
 //#define TRIEX    // 3 Extruders      3 in 3 - 3 Physical Stepper (E3)
-//#define BMG      // Single BMG dual drive extruder               (BMG)
 
 //---------------
 //Hardware Mods |
@@ -165,7 +172,7 @@
 //-----------------------------
 
 //Multiextruder 
-#if ANY(MIX, MIXT, CYCLOPS, CYCLOPST, DUALEX, TRIEX, BMG)
+#if ANY(MIX, MIXT, CYCLOPS, CYCLOPST, DUALEX, TRIEX)
   #define MULTIEXTRUDER 
 #endif
 
@@ -249,10 +256,19 @@
     #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 430 } // geared extruder found on M & T variants
     //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 800, 430 } 
     //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 2560, 430 } // M8 Z rod steps 2560 found on old I3pro  
-  #elif DISABLED (MULTIEXTRUDER) && ENABLED (BEAR)
+  #elif ENABLED (BEAR) && ENABLED (GREYBEAR)
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 400, 280 }  // stock + grey
+  #elif ENABLED (BMG18) && ENABLED (BEAR) && ENABLED (GREYBEAR)  
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 400, 830 }  // BMG1.8 + grey
+   #elif ENABLED (BMG18) && ENABLED (BEAR) && ENABLED (GREYBEAR) 
+   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 00, 400, 1660 }  // BMG 0.9 +grey
+  #elif ENABLED (BEAR)
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 280 }  //stock
-  #elif ENABLED (MULTIEXTRUDER) && ENABLED (BEAR)  
-    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 830 }  // BMG
+  #elif ENABLED (BMG18) && ENABLED (BEAR)  
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 830 }  // BMG1.8
+  #elif ENABLED (BMG18) && ENABLED (BEAR)  
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 1660 }  // BMG 0.9
+
 #endif
 
 //Motor direction logic
