@@ -44,14 +44,17 @@
 //SKR Boards - vscode: default_envs = #default_envs = LPC1768
 //#define BEAR        // Bear MK3s & Variants - tesing 
 
-//(Step 2) enable 1 if you have mixing or multi extruder (Variant)
+//SKR Boards - vscode: default_envs = #default_envs = LPC1769
+//#define BEARTURBO   // Bear MK3s Turbo & Variants - tesing 
+
+//(Step 2) enable 1 if you have mixing or multi extruder Or BMG (Variant)
 //#define MIX      // Enable Mixing    2 in 1 - 1 Virtual Stepper (M)
 //#define MIXT     // Enable Mixing    3 in 1 - 1 Virtual Stepper (T)
 //#define CYCLOPS  // Enable Cyclops   2 in 1 - 2 Physical Stepper (C) 
 //#define CYCLOPST // Enable Cyclops   3 in 1 - 3 Physical Stepper (CT)
 //#define DUALEX   // 2 Extruders      2 in 2 - 2 Physical Stepper (D) 
 //#define TRIEX    // 3 Extruders      3 in 3 - 3 Physical Stepper (E3)
-
+//#define BMG      // Single BMG dual drive extruder
 //---------------
 //Hardware Mods |
 //---------------
@@ -149,7 +152,7 @@
 //-----------------------------
 
 //Multiextruder 
-#if ANY(MIX, MIXT, CYCLOPS, CYCLOPST, DUALEX, TRIEX)
+#if ANY(MIX, MIXT, CYCLOPS, CYCLOPST, DUALEX, TRIEX, BMG)
   #define MULTIEXTRUDER 
 #endif
 
@@ -231,8 +234,11 @@
     #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 430 } // geared extruder found on M & T variants
     //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 800, 430 } 
     //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 2560, 430 } // M8 Z rod steps 2560 found on old I3pro  
-  #elif ENABLED (BEAR)
-    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 280 }  
+  #elif DISABLED (MULTIEXTRUDER) && ENABLED (BEAR)
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 280 }  //stock
+  #elif ENABLED (MULTIEXTRUDER) && ENABLED (BEAR)  
+    //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 830 }  // BMG
+
 #endif
 
 //Motor direction logic
@@ -246,6 +252,14 @@
   #define INVERTXYZ   // Invert XYZ direction disable if wrong direction.
 #else
   //#define INVERTXYZ   // Enable to force on   
+#endif
+
+#if ENABLED (BEARTURBO)
+#define BEAR
+#define CUSTOMBOARD // Enable Custom Board
+#if ENABLED (CUSTOMBOARD)
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO  // CTRL+Click to jump to board list & also set the correct default_env in platfomio.ini
+#endif
 #endif
 
 #define VALID_START

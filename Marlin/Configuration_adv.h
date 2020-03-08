@@ -694,7 +694,7 @@
  * Z Steppers Auto-Alignment
  * Add the G34 command to align multiple Z steppers using a bed probe.
  */
-#if ENABLED (BEAR)
+#if ENABLED (BEAR) && ANY(TOUCHPROBE, FMP)
   #define Z_STEPPER_AUTO_ALIGN
 #endif
 #if ENABLED(Z_STEPPER_AUTO_ALIGN)
