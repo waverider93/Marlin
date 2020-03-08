@@ -2936,14 +2936,20 @@
   #define USER_DESC_8 "Show SDPrint Name"
   #define USER_GCODE_8 "M27 C"
 
-  #define USER_DESC_9 "Cold Extrude On"
+  #define USER_DESC_9 "Enable Cold Extrude"
   #define USER_GCODE_9 "M302 P0"
 
-  #define USER_DESC_10 "Cold Extrude Off"
+  #define USER_DESC_10 "Disable Cold Extrude"
   #define USER_GCODE_10 "M302 P1"
 
   #define USER_DESC_11 "Dwell 30S"
   #define USER_GCODE_11 "G4 S30"
+
+  #define USER_DESC_12 "Auto Cold Pull"
+  #define USER_GCODE_12 "G28\nM83\nG92 E0.00\nG21\nG1 X125 Y105 Z30\nM109 S250\nG1 E10.00 F6.5\nM109 S95\nM18 E\nM0 Pull your filament out\nM106 S0\nM109 S0"
+ 
+  #define USER_DESC_13 "Nozzle Change"
+  #define USER_GCODE_13 "M104 S275\nM117 Setting Nozzle to 275C\nG4 s3\nM0 Click to continue"
 
   #else 
 
@@ -2985,6 +2991,15 @@
 
   #define USER_DESC_13 "Dwell 30S"
   #define USER_GCODE_13 "G4 S30"
+  
+  #define USER_DESC_14 "Zero Z Offset"
+  #define USER_GCODE_14 "M851 Z0.00\nM500\nM117 Z Probe Offset Zeroed\nG4 S3\nM0 Click to continue"
+
+  #define USER_DESC_15 "Auto Cold Pull"
+  #define USER_GCODE_15 "G28\nM83\nG92 E0.00\nG21\nG1 X125 Y105 Z30\nM109 S250\nG1 E10.00 F6.5\nM109 S95\nM18 E\nM0 Pull your filament out\nM106 S0\nM109 S0"
+
+  #define USER_DESC_16 "Nozzle Change"
+  #define USER_GCODE_16 "M104 S275\nM117 Setting Nozzle to 275C\nG4 s3\nM0 Click to continue"
 
  #endif
 #endif
