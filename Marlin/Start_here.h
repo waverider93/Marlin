@@ -118,9 +118,14 @@
 //#define HALFSPEED        // Reduce probing speed by 50% = 120 - May effect accuracy +-
 //#define DOUBLESPEED      // Raise probing speed by 100% = 480 - May effect accuracy +-
 
+//(LCD Mod) enable 1 (Mod) to override default LCD as defined by step 1
+//#define FULLGFXLCD      // Enable repreap full gfx lcd
+//#define CR10DISPLAY     // Enable cr10 style lcd
+
 //------------------------------
 //Optional settings & features |
 //------------------------------
+//Note 1024bytes of ram should remain for system to function properly.
 
 //Optional features
 //#define PLR              // Enabled power loss resume - Only functions from SDcard

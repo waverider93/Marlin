@@ -2451,23 +2451,19 @@
 // http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
 #if DISABLED (NOSCREEN)
-  #if ENABLED (GTA20)
+  #if ENABLED (GTA20) || ENABLED (FULLGFXLCD)
     #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
     #define ST7920_DELAY_1 DELAY_NS(200)
     #define ST7920_DELAY_2 DELAY_NS(200)
     #define ST7920_DELAY_3 DELAY_NS(200)
     #define ULTIPANEL
     #define NEWPANEL
-#elif ENABLED (MCU32) && DISABLED (BEAR)
-  #define REPRAP_DISCOUNT_SMART_CONTROLLER
-  #define ULTIPANEL
-  #define NEWPANEL
  #elif ENABLED (NEWMODEL) // Screen type & SDcard support
   //#define REPRAP_DISCOUNT_SMART_CONTROLLER
   //#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
   //#define ULTIPANEL
   //#define NEWPANEL
- #elif ENABLED (ENDER3)
+ #elif ENABLED (ENDER3) || ENABLED (CR10DISPLAY)
    #define CR10_STOCKDISPLAY
    #define ULTIPANEL
  #else //A10 - I3pro
