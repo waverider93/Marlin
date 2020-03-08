@@ -374,7 +374,9 @@
  *
  * Define one or both of these to override the default 0-255 range.
  */
-#if ENABLED (BEAR)
+#if ENABLED (MECHFAN)
+#define FAN_MIN_PWM 80
+#elif ENABLED (BEAR)
 #define FAN_MIN_PWM 20
 #else
 #define FAN_MIN_PWM 50

@@ -43,13 +43,13 @@
 
 //SKR Boards - vscode: default_envs = #default_envs = LPC1768
 //#define BEAR        // Bear MK3s & Variants - tesing 
-//#define Z320        // Enable to set Zmax to 320  
-//#define Z420        // Enable to set Zmax to 420 
+//#define Z320        // Enable to change Zmax to 320  
+//#define Z420        // Enable to change Zmax to 420 
 
 //SKR Boards - vscode: default_envs = #default_envs = LPC1769
 //#define BEAR_TURBO   // Bear MK3s Turbo & Variants - tesing 
-//#define ZT320        // Enable to set Zmax to 320  
-//#define ZT420        // Enable to set Zmax to 420
+//#define ZT320        // Enable to change Zmax to 320  
+//#define ZT420        // Enable to change Zmax to 420
 
 //(Step 2) enable 1 if you have mixing or multi extruder or BMG (Variant)
 //#define MIX      // Enable Mixing    2 in 1 - 1 Virtual Stepper (M)
@@ -125,6 +125,9 @@
 //(LCD Mod) enable 1 (Mod) to override default LCD as defined by step 1
 //#define FULLGFXLCD      // Enable repreap full gfx lcd
 //#define CR10DISPLAY     // Enable cr10 style lcd
+
+//(Fan Mod) enable 1 (Mod) to override default FAN PWM
+//#define MECHFAN     // Enable Mechatronics fan pwm
 
 //------------------------------
 //Optional settings & features |
