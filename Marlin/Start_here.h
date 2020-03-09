@@ -52,11 +52,11 @@
 //#define Z420        // Enable to change Zmax to 420 
 
 //Extruder mod pick only 1 or none for stock
-//#define BMG18       // BMG 1.8
-//#define BMG9        // BMG 0.9 
+//#define BMG18       // BMG 1.8 stepper
+//#define BMG9        // BMG 0.9 stepper
 
 //XY mod mod pick only 1 or none for stock
-//#define GREYBEAR    // XY 0.9
+//#define GREYBEAR    // XY 0.9 stepper
 
 //-----------------------------------------------------------------------------------------------------
 
