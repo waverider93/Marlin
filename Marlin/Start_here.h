@@ -283,9 +283,6 @@
   #define INVERTXYZ   // Invert XYZ direction disable if wrong direction.
 #else
   //#define INVERTXYZ   // Enable to force on 
-   //#define CUSTOMX true // true/false to change direction
-   //#define CUSTOMY true // true/false to change direction
-   //#define CUSTOMZ true // true/false to change direction  
 #endif
 
 #if ENABLED (BEAR_TURBO)
