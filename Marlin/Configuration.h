@@ -173,7 +173,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "3D Printer"
+//#define CUSTOM_MACHINE_NAME "3D Printer"  //defined else where
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like http://www.uuidgenerator.net/version4
@@ -1125,7 +1125,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 98 }
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 98 } // defined else where
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1351,7 +1351,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-//#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+//#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 } //defined else where
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1640,9 +1640,7 @@
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
   #define MIN_SOFTWARE_ENDSTOP_X
   #define MIN_SOFTWARE_ENDSTOP_Y
-  #if DISABLED (BEAR)
   #define MIN_SOFTWARE_ENDSTOP_Z
-#endif
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
@@ -1891,7 +1889,7 @@
  * Commands to execute at the end of G29 probing.
  * Useful to retract or move the Z probe out of the way.
  */
-//#define Z_PROBE_END_SCRIPT "G28XY"
+#define Z_PROBE_END_SCRIPT "G28XY"
 
 
 // @section homing
@@ -2231,6 +2229,8 @@
  */
 //#define NO_LCD_MENUS
 #if DISABLED (AT1280)
+//nothing
+#else
   #define SLIM_LCD_MENUS   //removes most advanced configuration menus
 #endif
 
@@ -2241,7 +2241,6 @@
 // produce one step. Should be increased for high-resolution encoders.
 //
 //#define ENCODER_PULSES_PER_STEP 4
-
 
 //
 // Use this option to override the number of step signals required to
@@ -2471,7 +2470,6 @@
   //#define REPRAP_DISCOUNT_SMART_CONTROLLER
   //#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
   //#define ULTIPANEL
-  //#define NEWPANEL
  #elif ENABLED (ENDER3) || ENABLED (CR10DISPLAY)
    #define CR10_STOCKDISPLAY
    #define ULTIPANEL
@@ -2772,20 +2770,22 @@
 #endif
 
 // Support for Adafruit Neopixel LED driver
-//#define NEOPIXEL_LED
+#if ENABLED (BEAR)
+#define NEOPIXEL_LED
 #if ENABLED(NEOPIXEL_LED)
-  #define NEOPIXEL_TYPE   NEO_GRBW // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
-  #define NEOPIXEL_PIN     4       // LED driving pin
+  #define NEOPIXEL_TYPE   NEO_GRB // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
+  #define NEOPIXEL_PIN     P1_24       // LED driving pin
   //#define NEOPIXEL2_TYPE NEOPIXEL_TYPE
   //#define NEOPIXEL2_PIN    5
-  #define NEOPIXEL_PIXELS 30       // Number of LEDs in the strip, larger of 2 strips if 2 neopixel strips are used
+  #define NEOPIXEL_PIXELS 17   // Number of LEDs in the strip, larger of 2 strips if 2 neopixel strips are used
   #define NEOPIXEL_IS_SEQUENTIAL   // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
   #define NEOPIXEL_BRIGHTNESS 127  // Initial brightness (0-255)
-  //#define NEOPIXEL_STARTUP_TEST  // Cycle through colors at startup
+  #define NEOPIXEL_STARTUP_TEST  // Cycle through colors at startup
 
   // Use a single Neopixel LED for static (background) lighting
   //#define NEOPIXEL_BKGD_LED_INDEX  0               // Index of the LED to use
   //#define NEOPIXEL_BKGD_COLOR { 255, 255, 255, 0 } // R, G, B, W
+#endif
 #endif
 
 /**

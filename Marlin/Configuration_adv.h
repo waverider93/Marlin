@@ -997,19 +997,20 @@
    * LED Control Menu
    * Add LED Control to the LCD menu
    */
+  #if ENABLED (BEAR) 
   //#define LED_CONTROL_MENU
   #if ENABLED(LED_CONTROL_MENU)
     #define LED_COLOR_PRESETS                 // Enable the Preset Color menu option
     #if ENABLED(LED_COLOR_PRESETS)
       #define LED_USER_PRESET_RED        255  // User defined RED value
-      #define LED_USER_PRESET_GREEN      128  // User defined GREEN value
-      #define LED_USER_PRESET_BLUE         0  // User defined BLUE value
+      #define LED_USER_PRESET_GREEN        0  // User defined GREEN value
+      #define LED_USER_PRESET_BLUE       255  // User defined BLUE value
       #define LED_USER_PRESET_WHITE      255  // User defined WHITE value
       #define LED_USER_PRESET_BRIGHTNESS 255  // User defined intensity
-      //#define LED_USER_PRESET_STARTUP       // Have the printer display the user preset color on startup
+      #define LED_USER_PRESET_STARTUP       // Have the printer display the user preset color on startup
     #endif
   #endif
-
+  #endif
 #endif // HAS_LCD_MENU
 
 // Scroll a longer status message into view
@@ -1273,8 +1274,10 @@
   //#define DOGM_SPI_DELAY_US 5
 
   // Swap the CW/CCW indicators in the graphics overlay
-  //#define OVERLAY_GFX_REVERSE
-
+  #if ENABLED (GREAYBEAR)
+  #define OVERLAY_GFX_REVERSE
+  #endif
+  
   /**
    * ST7920-based LCDs can emulate a 16 x 4 character display using
    * the ST7920 character-generator for very fast screen updates.
@@ -1511,7 +1514,7 @@
     #endif
   #endif
     //#define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
-  #if ENABLED (TOUCHPROBE) || ENABLED (FMP)
+  #if ANY (TOUCHPROBE, FMP, PINDA)
       #define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
   #endif
   #if ENABLED(BABYSTEP_ZPROBE_OFFSET)
@@ -1763,7 +1766,9 @@
 // For debug-echo: 128 bytes for the optimal speed.
 // Other output doesn't need to be that speedy.
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256]
-#if ENABLED (BEAR)
+#if ENABLED (GREAYBEAR)
+#define TX_BUFFER_SIZE 16
+#elif ENABLED (BEAR)
 #define TX_BUFFER_SIZE 32
 #else
 #define TX_BUFFER_SIZE 0
@@ -2096,7 +2101,12 @@
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
 
   #if AXIS_IS_TMC(X)
+  #if ENABLED (GREYBEAR)
+    #define X_CURRENT       900        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #else
     #define X_CURRENT       500        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #endif
+    
     #if ENABLED (BEAR_TURBO)
     #define X_CURRENT_HOME  250  // (mA) RMS current for sensorless homing
     #else
@@ -2116,7 +2126,11 @@
   #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT       600
+   #if ENABLED (GREYBEAR)
+    #define Y_CURRENT       1000        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #else
+    #define Y_CURRENT       600        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #endif
     #define Y_CURRENT_HOME  350
     #define Y_MICROSTEPS     16
     #define Y_RSENSE          0.11
@@ -2172,7 +2186,11 @@
   #endif
 
   #if AXIS_IS_TMC(E0)
-    #define E0_CURRENT      550
+   #if ENABLED (GREYBEAR)
+    #define E0_CURRENT       700        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #else
+    #define E0_CURRENT       550        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #endif
     #define E0_MICROSTEPS    32
     #define E0_RSENSE         0.11
     #define E0_CHAIN_POS     -1
@@ -2317,7 +2335,7 @@
    * Define you own with
    * { <off_time[1..15]>, <hysteresis_end[-3..12]>, hysteresis_start[1..8] }
    */
-  #if ENABLED (AT2560) || ENABLED (BEAR)
+  #if ANY (AT2560, BEAR, BEAR_TURBO)
   #define CHOPPER_TIMING CHOPPER_DEFAULT_24V
   #else 
   #define CHOPPER_TIMING CHOPPER_DEFAULT_12V
@@ -2404,13 +2422,21 @@
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
+    #if ENABLED (GREYBEAR)
+    #define X_STALL_SENSITIVITY  80
+    #else
     #define X_STALL_SENSITIVITY  100
+    #endif
+    
     #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
     #if ENABLED (BEAR_TURBO)
     #define Y_STALL_SENSITIVITY  100
+    #elif
+    #define Y_STALL_SENSITIVITY  80
     #else
     #define Y_STALL_SENSITIVITY  90
     #endif
+    
     //#define Z_STALL_SENSITIVITY  8
     //#define SPI_ENDSTOPS              // TMC2130 only
     #define IMPROVE_HOMING_RELIABILITY
