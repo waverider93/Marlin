@@ -24,7 +24,7 @@
 
 //(Step 1) enable 1 base model/frame
 //GT2560 Boards - vscode: default_envs = mega2560 in platformio.ini
-//#define GTA10       // A10 & Variants
+#define GTA10       // A10 & Variants
 //#define GTA20       // A20 & Variants
 //#define MECREATOR2  // Mecreator2 & Variants     
 //#define I3PROA      // I3ProA & Variants
@@ -45,7 +45,7 @@
 //----------------------------------------------------------------------------------------------------
 //SKR Boards - vscode: default_envs = #default_envs = LPC1768
 //Select 1 board
-#define BEAR        // Bear MK3s & Variants - tesing 
+//#define BEAR        // Bear MK3s & Variants - tesing 
 //#define BEAR_TURBO   // Bear MK3s Turbo & Variants default_envs = #default_envs = LPC1769
 
 //Z Mod pick only 1 or none for stock
@@ -273,9 +273,6 @@
   #elif ANY (BEAR, BEAR_TURBO) 
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 280 }  //stock
   #endif
- 
-
-#endif
 
 //Motor direction logic
 #if ENABLED (TMCCHIPS) && DISABLED (MULTIEXTRUDER) || DISABLED (TMCCHIPS) && ENABLED (MULTIEXTRUDER)
