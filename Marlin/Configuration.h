@@ -527,7 +527,7 @@
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
 #if ENABLED (BEAR)
-#define MAXHOTENDTEMP 290  // Max hotend temp 260
+#define MAXHOTENDTEMP 275  // Max hotend temp 260
 #else
 #define MAXHOTENDTEMP 260  // Max hotend temp 260
 #endif
@@ -540,7 +540,7 @@
 #define HEATER_5_MAXTEMP (MAXHOTENDTEMP + 15)
 #define HEATER_6_MAXTEMP (MAXHOTENDTEMP + 15)
 #define HEATER_7_MAXTEMP (MAXHOTENDTEMP + 15)
-#define BED_MAXTEMP      (MAXHOTENDTEMP / 2 + 10)
+#define BED_MAXTEMP      (MAXHOTENDTEMP / 2 - 10)
 
 //===========================================================================
 //============================= PID Settings ================================
@@ -1132,7 +1132,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 60 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 300, 30, 120 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1145,7 +1145,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 5000 }
+#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 200, 10000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -2238,9 +2238,8 @@
 // This option overrides the default number of encoder pulses needed to
 // produce one step. Should be increased for high-resolution encoders.
 //
-#if ENABLED (BEAR)
-  #define ENCODER_PULSES_PER_STEP 4
-#endif
+//#define ENCODER_PULSES_PER_STEP 4
+
 
 //
 // Use this option to override the number of step signals required to

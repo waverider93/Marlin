@@ -608,7 +608,7 @@
 #define Y_HOME_BUMP_MM 0
 #define Z_HOME_BUMP_MM 2
 #define HOMING_BUMP_DIVISOR { 2, 2, 4 }  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
-#define QUICK_HOME                     // If homing includes X and Y, do a diagonal move initially
+//#define QUICK_HOME                     // If homing includes X and Y, do a diagonal move initially
 #define HOMING_BACKOFF_MM { 5, 5, 0 }  // (mm) Move away from the endstops after homing
 #else
 #define X_HOME_BUMP_MM 5
@@ -736,7 +736,12 @@
     // Define Stepper XY positions for Z1, Z2, Z3 corresponding to
     // the Z screw positions in the bed carriage.
     // Define one position per Z stepper in stepper driver order.
+
+    #if ENABLED (BEAR_TURBO)
+    #define Z_STEPPER_ALIGN_STEPPER_XY { { 210.7, 102.5 }, { 152.6, 220.0 }, { 94.5, 102.5 } }
+    #else
     #define Z_STEPPER_ALIGN_STEPPER_XY { { 35, 105 }, { 235,  105 } }
+  #endif
   #else
     // Amplification factor. Used to scale the correction step up or down in case
     // the stepper (spindle) position is farther out than the test point.
@@ -1060,7 +1065,7 @@
 
   // Reverse SD sort to show "more recent" files first, according to the card's FAT.
   // Since the FAT gets out of order with usage, SDCARD_SORT_ALPHA is recommended.
-  //#define SDCARD_RATHERRECENTFIRST
+  #define SDCARD_RATHERRECENTFIRST
 
   #define SD_MENU_CONFIRM_START             // Confirm the selected SD file before printing
 
@@ -1285,7 +1290,7 @@
   #if ENABLED(U8GLIB_ST7920)
     //#define LIGHTWEIGHT_UI
     #if ENABLED(LIGHTWEIGHT_UI)
-      #define STATUS_EXPIRE_SECONDS 5
+      #define STATUS_EXPIRE_SECONDS 20
     #endif
   #endif
 
@@ -1758,8 +1763,11 @@
 // For debug-echo: 128 bytes for the optimal speed.
 // Other output doesn't need to be that speedy.
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256]
+#if ENABLED (BEAR)
+#define TX_BUFFER_SIZE 32
+#else
 #define TX_BUFFER_SIZE 0
-
+#endif
 // Host Receive Buffer Size
 // Without XON/XOFF flow control (see SERIAL_XON_XOFF below) 32 bytes should be enough.
 // To use flow control, set this buffer size to at least 1024 bytes.
@@ -2126,9 +2134,9 @@
   #if AXIS_IS_TMC(Z)
     #define Z_CURRENT       450
     #if ENABLED (BEAR_TURBO)
-     #define Z_CURRENT_HOME (Z2_CURRENT / 2)
+     #define Z_CURRENT_HOME (Z_CURRENT / 2)
     #else
-    #define Z_CURRENT_HOME Z2_CURRENT
+    #define Z_CURRENT_HOME Z_CURRENT
     #endif
     #define Z_MICROSTEPS     16
     #define Z_RSENSE          0.11
@@ -2398,7 +2406,11 @@
     // TMC2209: 0...255. TMC2130: -64...63
     #define X_STALL_SENSITIVITY  100
     #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
+    #if ENABLED (BEAR_TURBO)
+    #define Y_STALL_SENSITIVITY  100
+    #else
     #define Y_STALL_SENSITIVITY  90
+    #endif
     //#define Z_STALL_SENSITIVITY  8
     //#define SPI_ENDSTOPS              // TMC2130 only
     #define IMPROVE_HOMING_RELIABILITY
@@ -2414,7 +2426,6 @@
    * Enable M122 debugging command for TMC stepper drivers.
    * M122 S0/1 will enable continous reporting.
    */
-
 #define TMC_DEBUG
 
   /**
