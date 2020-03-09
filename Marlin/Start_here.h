@@ -23,7 +23,7 @@
 
 //(Step 1) enable 1 base model/frame
 //GT2560 Boards - vscode: default_envs = mega2560 in platformio.ini
-#define GTA10       // A10 & Variants
+//#define GTA10       // A10 & Variants
 //#define GTA20       // A20 & Variants
 //#define MECREATOR2  // Mecreator2 & Variants     
 //#define I3PROA      // I3ProA & Variants
@@ -44,7 +44,7 @@
 //----------------------------------------------------------------------------------------------------
 //SKR Boards - vscode: default_envs = #default_envs = LPC1768
 //Select 1 board
-//#define BEAR        // Bear MK3s & Variants - tesing 
+#define BEAR        // Bear MK3s & Variants - tesing 
 //#define BEAR_TURBO   // Bear MK3s Turbo & Variants default_envs = #default_envs = LPC1769
 
 //Z Mod pick only 1 or none for stock
@@ -249,26 +249,30 @@
 #endif
 
 //Steps selection logic
-#if DISABLED (MULTIEXTRUDER) && DISABLED (BEAR)
+#if DISABLED (MULTIEXTRUDER) && DISABLED (BEAR) && DISABLED (BEAR_TURBO)
   #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 95 }  // ungeared extruder found on a10/a20/a30/i3pro
   //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 800, 95 } 
   //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 2560, 95 } // M8 Z rod steps 2560 found on old I3pro
-  #elif ENABLED (MULTIEXTRUDER) && DISABLED (BEAR)
+#elif ENABLED (MULTIEXTRUDER) && DISABLED (BEAR)
     #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 430 } // geared extruder found on M & T variants
     //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 800, 430 } 
     //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 2560, 430 } // M8 Z rod steps 2560 found on old I3pro  
-  #elif ENABLED (BEAR) && ENABLED (GREYBEAR)
-    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 400, 280 }  // stock + grey
-  #elif ENABLED (BMG18) && ENABLED (BEAR) && ENABLED (GREYBEAR)  
+#endif
+
+  #if ENABLED (GREYBEAR) && ENABLED (BMG18) && ANY (BEAR, BEAR_TURBO) 
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 400, 830 }  // BMG1.8 + grey
-   #elif ENABLED (BMG18) && ENABLED (BEAR) && ENABLED (GREYBEAR) 
-   #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 00, 400, 1660 }  // BMG 0.9 +grey
-  #elif ENABLED (BEAR)
-    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 280 }  //stock
-  #elif ENABLED (BMG18) && ENABLED (BEAR)  
+  #elif ENABLED (BMG18) && ANY (BEAR, BEAR_TURBO)  
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 830 }  // BMG1.8
-  #elif ENABLED (BMG18) && ENABLED (BEAR)  
+  #elif ENABLED (GREYBEAR) && ENABLED (BMG9) && ANY (BEAR, BEAR_TURBO)
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 400, 1660 }  // BMG 0.9 +grey
+  #elif ENABLED (BMG9) && ANY (BEAR, BEAR_TURBO) 
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 1660 }  // BMG 0.9
+  #elif ENABLED (GREYBEAR) && ANY (BEAR, BEAR_TURBO) 
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 400, 280 }  // stock + grey  
+  #elif ANY (BEAR, BEAR_TURBO) 
+    #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 280 }  //stock
+  #endif
+ 
 
 #endif
 
