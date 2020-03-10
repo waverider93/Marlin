@@ -2431,7 +2431,7 @@
     #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
     #if ENABLED (BEAR_TURBO)
     #define Y_STALL_SENSITIVITY  100
-    #elif
+    #elif ENABLED (GREYBEAR)
     #define Y_STALL_SENSITIVITY  80
     #else
     #define Y_STALL_SENSITIVITY  90

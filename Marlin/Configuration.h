@@ -105,7 +105,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#if ENABLED (MCU32) && DISABLED (BEAR)
+#if ENABLED (MCU32) && DISABLED (BEAR) && DISABLED (BEAR_TURBO)
   #define SERIAL_PORT 1
   //#define SERIAL_PORT_2 2
 #elif ANY(AT2560, AT1280)
@@ -1662,20 +1662,20 @@
    
    #if ENABLED (MIXT) || ENABLED (CYCLOPST) || ENABLED (TRIEX)
    #define NUM_RUNOUT_SENSORS   3
-   #if DISABLED (BEAR)
+   #if DISABLED (BEAR) && DISABLED (BEAR_TURBO)
    #define FIL_RUNOUT_PIN      66
    #define FIL_RUNOUT2_PIN     67
    #define FIL_RUNOUT3_PIN     68
    #endif
    #elif ENABLED (MIX) || ENABLED (CYCLOPS) || ENABLED (DUELEX)
    #define NUM_RUNOUT_SENSORS   2
-   #if DISABLED (BEAR)
+   #if DISABLED (BEAR) && DISABLED (BEAR_TURBO)
    #define FIL_RUNOUT_PIN      66
    #define FIL_RUNOUT2_PIN     67
    #endif
    #else
    #define NUM_RUNOUT_SENSORS   1
-   #if DISABLED (BEAR)
+   #if DISABLED (BEAR) && DISABLED (BEAR_TURBO)
    #define FIL_RUNOUT_PIN      66
    #endif
    #endif
@@ -1868,7 +1868,7 @@
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-#if DISABLED (BEAR)
+#if DISABLED (BEAR) && DISABLED (BEAR_TURBO)
 #define LEVEL_BED_CORNERS
 #if ENABLED(LEVEL_BED_CORNERS)
   #define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
@@ -1892,11 +1892,10 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-#if ANY (BEAR, BEAR_TURBO)
-  #define MANUAL_X_HOME_POS 0
-  #define MANUAL_Y_HOME_POS -2.2
-  #define MANUAL_Z_HOME_POS 0.2
-#endif
+/#define MANUAL_X_HOME_POS 0
+//#define MANUAL_Y_HOME_POS 0
+//#define MANUAL_Z_HOME_POS 0
+
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
 //
@@ -2192,7 +2191,7 @@
  */
 #if DISABLED (NOSDCARD)
   #define SDSUPPORT
-#if ENABLED (MCU32) && ENABLED (SDSUPPORT) && DISABLED (BEAR)
+#if ENABLED (MCU32) && ENABLED (SDSUPPORT) && DISABLED (BEAR) && DISABLED (BEAR_TURBO)
   #define SDIO_SUPPORT
 #endif
 #endif

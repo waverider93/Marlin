@@ -48,7 +48,7 @@
 //#define BEAR        // Bear MK3s & Variants - tesing 
 //#define BEAR_TURBO   // Bear MK3s Turbo & Variants default_envs = #default_envs = LPC1769
 
-//Z Mod pick only 1 or none for stock
+//Z mod pick only 1 or none for stock
 //#define Z320        // Enable to change Zmax to 320  
 //#define Z420        // Enable to change Zmax to 420 
 
@@ -56,7 +56,7 @@
 //#define BMG18       // BMG E 1.8 stepper
 //#define BMG9        // BMG E 0.9 stepper
 
-//XY mod mod pick only 1 or none for stock
+//XY mod pick only 1 or none for stock
 //#define GREYBEAR    // XY 0.9 stepper
 
 //-----------------------------------------------------------------------------------------------------
@@ -189,7 +189,7 @@
 #endif
 
 //MCU32 board models
-#if ANY(GTA30, GTE180, GTM201, GTD200, BEAR)
+#if ANY(GTA30, GTE180, GTM201, GTD200, BEAR, BREAR_TURBO)
   #define MCU32
 #endif
 
@@ -219,9 +219,9 @@
 #endif
 
 //Probe offset logic - suggest you mesure yours and adjust as needed. 
-#if DISABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20) && DISABLED (BEAR)
+#if DISABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20)
   #define NOZZLE_TO_PROBE_OFFSET { -38, 5, 0 } // Nozzle To Probe offset XYZ A10/A20 - this is what it is on my test machines yours could differ 
-#elif ENABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20) && DISABLED (BEAR)
+#elif ENABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20)
   #define NOZZLE_TO_PROBE_OFFSET { -40, 0, 0 }  // Nozzle To Probe offset XYZ A10M+T/A20M+T - this is what it is on my test machines yours could differ
 #elif ANY (BEAR, BEAR_TURBO) && ENABLED (TOUCHPROBE)
   #define NOZZLE_TO_PROBE_OFFSET { 27, 10, 0 } 
@@ -254,7 +254,7 @@
   #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 95 }  // ungeared extruder found on a10/a20/a30/i3pro
   //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 800, 95 } 
   //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 2560, 95 } // M8 Z rod steps 2560 found on old I3pro
-#elif ENABLED (MULTIEXTRUDER) && DISABLED (BEAR)
+#elif ENABLED (MULTIEXTRUDER) && DISABLED (BEAR) && DISABLED (BEAR_TURBO)
     #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 430 } // geared extruder found on M & T variants
     //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 800, 430 } 
     //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 2560, 430 } // M8 Z rod steps 2560 found on old I3pro  
