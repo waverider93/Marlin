@@ -171,6 +171,8 @@
   #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
 #elif ENABLED (NEWMODEL) //Replace NEW MODEL with real name
   #define MOTHERBOARD BOARD_RAMPS_14_EFB   // define new models mainboard
+#else
+  #error No model/frame selected in step 1 
  #endif 
 #endif
 
