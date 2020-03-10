@@ -1774,9 +1774,7 @@
   // Gradually reduce leveling correction until a set height is reached,
   // at which point movement will be level to the machine's XY plane.
   // The height can be set with M420 Z<height>
-  #if ENABLED (FADE)
-    #define ENABLE_LEVELING_FADE_HEIGHT
-  #endif
+  #define ENABLE_LEVELING_FADE_HEIGHT
 
   // For Cartesian machines, instead of dividing moves on mesh boundaries,
   // split up moves into short segments like a Delta. This follows the
@@ -2222,9 +2220,7 @@
  * just remove some extraneous menu items to recover space.
  */
 //#define NO_LCD_MENUS
-#if DISABLED (AT1280)
-//nothing
-#else
+#if ENABLED(AT1280)
   #define SLIM_LCD_MENUS   //removes most advanced configuration menus
 #endif
 

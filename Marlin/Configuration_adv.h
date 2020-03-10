@@ -985,10 +985,12 @@
 #if HAS_LCD_MENU
 
   // Include a page of printer information in the LCD Main Menu 
-  //#define LCD_INFO_MENU
+#if DISABLED (AT1280)
+  #define LCD_INFO_MENU
   #if ENABLED(LCD_INFO_MENU)
     //#define LCD_PRINTER_INFO_IS_BOOTSCREEN // Show bootscreen(s) instead of Printer Info pages
   #endif
+#endif
 
   // BACK menu items keep the highlight at the top
   #define TURBO_BACK_MENU_ITEM
@@ -998,7 +1000,7 @@
    * Add LED Control to the LCD menu
    */
   #if ANY (BEAR, BEAR_TURBO)
-  //#define LED_CONTROL_MENU
+  #define LED_CONTROL_MENU
   #if ENABLED(LED_CONTROL_MENU)
     #define LED_COLOR_PRESETS                 // Enable the Preset Color menu option
     #if ENABLED(LED_COLOR_PRESETS)
@@ -1749,9 +1751,9 @@
 #define BLOCK_BUFFER_SIZE BUFSIZE // SD,LCD,Buttons take more memory, block buffer needs to be smaller'
 
 #if ENABLED (MCU32)
-  #define BUFSIZE 64     // serial buffer
+  #define BUFSIZE 64     // buffer
 #else
-  #define BUFSIZE 16     // serial buffer
+  #define BUFSIZE 16     // buffer
 #endif  
 
 // @section serial
@@ -1766,13 +1768,8 @@
 // For debug-echo: 128 bytes for the optimal speed.
 // Other output doesn't need to be that speedy.
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256]
-#if ENABLED (GREAYBEAR)
-#define TX_BUFFER_SIZE 16
-#elif ANY (BEAR, BEAR_TURBO)
-#define TX_BUFFER_SIZE 32
-#else
 #define TX_BUFFER_SIZE 0
-#endif
+
 // Host Receive Buffer Size
 // Without XON/XOFF flow control (see SERIAL_XON_XOFF below) 32 bytes should be enough.
 // To use flow control, set this buffer size to at least 1024 bytes.
@@ -2860,7 +2857,7 @@
 /**
  * Include capabilities in M115 output
  */
- #define EXTENDED_CAPABILITIES_REPORT
+#define EXTENDED_CAPABILITIES_REPORT
 
 /**
  * Expected Printer Check
