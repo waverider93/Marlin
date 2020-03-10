@@ -376,7 +376,7 @@
  */
 #if ENABLED (MECHFAN)
 #define FAN_MIN_PWM 80
-#elif ENABLED (BEAR)
+#elif ANY (BEAR, BEAR_TURBO)
 #define FAN_MIN_PWM 20
 #else
 #define FAN_MIN_PWM 50
@@ -424,7 +424,7 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
-#if ENABLED (BEAR)
+#if ANY (BEAR, BEAR_TURBO)
   #define E0_AUTO_FAN_PIN P2_04
 #endif
 #define E1_AUTO_FAN_PIN -1
@@ -525,7 +525,7 @@
 //
 // For Z set the number of stepper drivers
 //
-#if ENABLED (BEAR)
+#if ANY (BEAR, BEAR_TURBO)
   #define NUM_Z_STEPPER_DRIVERS 2   // (1-4) Z options change based on how many
 #else
   #define NUM_Z_STEPPER_DRIVERS 1   // (1-4) Z options change based on how many
@@ -603,7 +603,7 @@
 // @section homing
 
 // Homing hits each endstop, retracts by these distances, then does a slower bump.
-#if ENABLED (BEAR)
+#if ANY (BEAR, BEAR_TURBO)
 #define X_HOME_BUMP_MM 0
 #define Y_HOME_BUMP_MM 0
 #define Z_HOME_BUMP_MM 2
@@ -696,7 +696,7 @@
  * Z Steppers Auto-Alignment
  * Add the G34 command to align multiple Z steppers using a bed probe.
  */
-#if ENABLED (BEAR) && ANY (TOUCHPROBE, FMP, PINDA)
+#if ANY (BEAR, BEAR_TURBO) && ANY (TOUCHPROBE, FMP, PINDA)
   #define Z_STEPPER_AUTO_ALIGN
 #endif
 #if ENABLED(Z_STEPPER_AUTO_ALIGN)
@@ -877,7 +877,7 @@
 
   // Define the pin to read during calibration
   #ifndef CALIBRATION_PIN
-    //#define CALIBRATION_PIN -1            // Define here to override the default pin
+    #define CALIBRATION_PIN -1 // Override in pins.h or set to -1 to use your Z endstop
     #define CALIBRATION_PIN_INVERTING false // Set to true to invert the custom pin
     //#define CALIBRATION_PIN_PULLDOWN
     #define CALIBRATION_PIN_PULLUP
@@ -997,7 +997,7 @@
    * LED Control Menu
    * Add LED Control to the LCD menu
    */
-  #if ENABLED (BEAR) 
+  #if ANY (BEAR, BEAR_TURBO)
   //#define LED_CONTROL_MENU
   #if ENABLED(LED_CONTROL_MENU)
     #define LED_COLOR_PRESETS                 // Enable the Preset Color menu option
@@ -1768,7 +1768,7 @@
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256]
 #if ENABLED (GREAYBEAR)
 #define TX_BUFFER_SIZE 16
-#elif ENABLED (BEAR)
+#elif ANY (BEAR, BEAR_TURBO)
 #define TX_BUFFER_SIZE 32
 #else
 #define TX_BUFFER_SIZE 0

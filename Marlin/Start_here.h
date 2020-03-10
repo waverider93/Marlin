@@ -223,9 +223,9 @@
   #define NOZZLE_TO_PROBE_OFFSET { -38, 5, 0 } // Nozzle To Probe offset XYZ A10/A20 - this is what it is on my test machines yours could differ 
 #elif ENABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20) && DISABLED (BEAR)
   #define NOZZLE_TO_PROBE_OFFSET { -40, 0, 0 }  // Nozzle To Probe offset XYZ A10M+T/A20M+T - this is what it is on my test machines yours could differ
-#elif ENABLED (BEAR) && ENABLED (TOUCHPROBE)
+#elif ANY (BEAR, BEAR_TURBO) && ENABLED (TOUCHPROBE)
   #define NOZZLE_TO_PROBE_OFFSET { 27, 10, 0 } 
-#elif ENABLED (BEAR)
+#elif ANY (BEAR, BEAR_TURBO)
   #define NOZZLE_TO_PROBE_OFFSET { 23, 5, 0 }  
 #else
   #define NOZZLE_TO_PROBE_OFFSET { 0, 0, 0 }
@@ -238,7 +238,7 @@
 #elif ANY (GTA10, GTA20, GTA30)
   #define X_MIN_POS -10  //- this is what it is on my test machines yours could differ
   #define Y_MIN_POS -5   //- this is what it is on my test machines yours could differ
-#elif ENABLED (BEAR)
+#elif ANY (BEAR, BEAR_TURBO)
   #define X_MIN_POS 0
   #define Y_MIN_POS -4  
 #elif ENABLED (NEWMODEL) 
@@ -285,14 +285,6 @@
   #define INVERTXYZ   // Invert XYZ direction disable if wrong direction.
 #else
   //#define INVERTXYZ   // Enable to force on 
-#endif
-
-#if ENABLED (BEAR_TURBO)
-#define BEAR
-#define CUSTOMBOARD // Enable Custom Board
-#if ENABLED (CUSTOMBOARD)
-  #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO  // CTRL+Click to jump to board list & also set the correct default_env in platfomio.ini
-#endif
 #endif
 
 #define VALID_START

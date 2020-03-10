@@ -114,7 +114,7 @@
 #elif ENABLED (NEWMODEL) 
   #define SERIAL_PORT 0
   //#define SERIAL_PORT_2 -1
-#elif ENABLED (BEAR)
+#elif ANY (BEAR, BEAR_TURBO)
   #define SERIAL_PORT 0
   #define SERIAL_PORT_2 -1
 #else 
@@ -167,6 +167,8 @@
   #define MOTHERBOARD BOARD_MELZI_CREALITY  
 #elif ENABLED (BEAR)
   #define MOTHERBOARD BOARD_BTT_SKR_V1_4
+#elif ENABLED (BEAR_TURBO)
+  #define MOTHERBOARD BOARD_BTT_SKR_V1_4_TURBO
 #elif ENABLED (NEWMODEL) //Replace NEW MODEL with real name
   #define MOTHERBOARD BOARD_RAMPS_14_EFB   // define new models mainboard
  #endif 
@@ -459,19 +461,19 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#if ENABLED (BEAR)
+#if ANY (BEAR, BEAR_TURBO)
   #define TEMP_SENSOR_0 5
 #else
   #define TEMP_SENSOR_0 1
 #endif
 
-#if ENABLED (BEAR) && ENABLED (DUALEX)
+#if ANY (BEAR, BEAR_TURBO) && ENABLED (DUALEX)
   #define TEMP_SENSOR_1 5
 #elif ENABLED (DUALEX)
   #define TEMP_SENSOR_1 1
 #endif
 
-#if ENABLED (BEAR) && ENABLED (TRIEX)
+#if ANY (BEAR, BEAR_TURBO) && ENABLED (TRIEX)
   #define TEMP_SENSOR_1 5
   #define TEMP_SENSOR_1 5
 #elif ENABLED (TRIEX)
@@ -526,7 +528,7 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#if ENABLED (BEAR)
+#if ANY (BEAR, BEAR_TURBO)
 #define MAXHOTENDTEMP 275  // Max hotend temp 260
 #else
 #define MAXHOTENDTEMP 260  // Max hotend temp 260
@@ -590,7 +592,7 @@
     #define DEFAULT_Kp 21.73
     #define DEFAULT_Ki 1.54
     #define DEFAULT_Kd 76.55  
-  #elif ENABLED (BEAR)
+  #elif ANY (BEAR, BEAR_TURBO)
     #define DEFAULT_Kp 16.13
     #define DEFAULT_Ki 1.16
     #define DEFAULT_Kd 56.23 
@@ -654,7 +656,7 @@
     #define  DEFAULT_bedKp 369.610
     #define  DEFAULT_bedKi 54.132
     #define  DEFAULT_bedKd 602.870
-  #elif ENABLED (BEAR)
+  #elif ANY (BEAR, BEAR_TURBO)
     #define DEFAULT_bedKp 126.13
     #define DEFAULT_bedKi 4.30
     #define DEFAULT_bedKd 924.76  
@@ -849,16 +851,7 @@
 //#define E5_DRIVER_TYPE A4988
 //#define E6_DRIVER_TYPE A4988
 //#define E7_DRIVER_TYPE A4988
-
-#if ENABLED (A4988)
-   #define X_DRIVER_TYPE  A4988
-   #define Y_DRIVER_TYPE  A4988
-   #define Z_DRIVER_TYPE  A4988
-   #define Z2_DRIVER_TYPE A4988
-   #define E0_DRIVER_TYPE A4988
-   #define E1_DRIVER_TYPE A4988
-   #define E2_DRIVER_TYPE A4988
- #endif  
+ 
 
 #if ENABLED (TMC2208S)
   #define X_DRIVER_TYPE  TMC2208_STANDALONE
@@ -1132,7 +1125,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 30, 120 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 30, 120 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1145,7 +1138,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 200, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 200, 10000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1471,11 +1464,11 @@
   #define INVERT_X_DIR false
   #define INVERT_Y_DIR false
   #define INVERT_Z_DIR false
-#elif ENABLED (GTE180) && DISABLED (CUSTOMDRIVERS) || ENABLED (BEAR) && ENABLED(INVERTXYZ) && DISABLED (CUSTOMDRIVERS) 
+#elif ENABLED (GTE180) && DISABLED (CUSTOMDRIVERS) || ANY (BEAR, BEAR_TURBO) && ENABLED(INVERTXYZ) && DISABLED (CUSTOMDRIVERS) 
   #define INVERT_X_DIR false
   #define INVERT_Y_DIR true
   #define INVERT_Z_DIR false  
-#elif ENABLED (GTE180) && ENABLED(INVERTXYZ) && DISABLED (CUSTOMDRIVERS) || ENABLED (BEAR) && DISABLED (CUSTOMDRIVERS) 
+#elif ENABLED (GTE180) && ENABLED(INVERTXYZ) && DISABLED (CUSTOMDRIVERS) || ANY (BEAR, BEAR_TURBO) && DISABLED (CUSTOMDRIVERS) 
   #define INVERT_X_DIR true
   #define INVERT_Y_DIR false
   #define INVERT_Z_DIR true
@@ -1606,7 +1599,7 @@
   #define X_BED_SIZE 235
   #define Y_BED_SIZE 235
   #define Z_MAX_POS 250
-#elif ENABLED (BEAR)
+#elif ANY (BEAR, BEAR_TURBO)
   #define X_BED_SIZE 255
   #define Y_BED_SIZE 212.5
   #if ENABLED (Z320)
@@ -1899,7 +1892,7 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-#if ENABLED (BEAR)
+#if ANY (BEAR, BEAR_TURBO)
   #define MANUAL_X_HOME_POS 0
   #define MANUAL_Y_HOME_POS -2.2
   #define MANUAL_Z_HOME_POS 0.2
@@ -2770,7 +2763,7 @@
 #endif
 
 // Support for Adafruit Neopixel LED driver
-#if ENABLED (BEAR)
+#if ANY (BEAR, BEAR_TURBO)
 #define NEOPIXEL_LED
 #if ENABLED(NEOPIXEL_LED)
   #define NEOPIXEL_TYPE   NEO_GRB // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
