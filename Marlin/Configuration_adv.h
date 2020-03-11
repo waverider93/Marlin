@@ -2332,10 +2332,12 @@
    * Define you own with
    * { <off_time[1..15]>, <hysteresis_end[-3..12]>, hysteresis_start[1..8] }
    */
-  #if ANY (AT2560, BEAR, BEAR_TURBO)
-  #define CHOPPER_TIMING CHOPPER_DEFAULT_24V
+  #if ENABLED (MK25)
+    #define CHOPPER_TIMING CHOPPER_DEFAULT_12V
+  #elif ANY (AT2560, BEAR, BEAR_TURBO)
+    #define CHOPPER_TIMING CHOPPER_DEFAULT_24V
   #else 
-  #define CHOPPER_TIMING CHOPPER_DEFAULT_12V
+    #define CHOPPER_TIMING CHOPPER_DEFAULT_12V
   #endif
 
   /**

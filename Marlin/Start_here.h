@@ -45,8 +45,11 @@
 //----------------------------------------------------------------------------------------------------
 //SKR Boards - vscode: default_envs = #default_envs = LPC1768
 //Select 1 board
-//#define BEAR        // Bear MK3s & Variants - tesing 
-//#define BEAR_TURBO  // Bear MK3s Turbo & Variants default_envs = #default_envs = LPC1769
+//#define BEAR        // Bear MK3/MK3s & Variants - tesing 
+//#define BEAR_TURBO  // Bear MK3/MK3s Turbo & Variants default_envs = #default_envs = LPC1769
+
+//Switch from Bear MK3 to MK2 
+//#define MK25        // Enable to set 12V for Bear MK2.5
 
 //Z mod pick only 1 or none for stock
 //#define Z320        // Enable to change Zmax to 320  
