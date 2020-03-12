@@ -126,7 +126,7 @@
 #endif
 
 //(Probe Mod) enable 1 (Mod) probe type none = manual (stock) - No GTM32 probe support yet
-//#define TOUCHPROBE  // Enable Touch Type Probe (Bltouch / 3Dtouch)
+#define TOUCHPROBE  // Enable Touch Type Probe (Bltouch / 3Dtouch)
 //#define FMP         // Enable Fixed Mounted Type Probe (Capacitive / Inductive)
 //#define PINDA       // Enable Pinda Type Probe
 
@@ -157,20 +157,10 @@
 //#define NOSCREEN         // Disable the screen - Save alot of resources good for octoprint users
 //#define NOSDCARD         // Disable the sdcard slot - Save alot of resources good for octoprint users 
 
-#if DISABLED (AT1280) // disabled only on 1280 boards other wise enabled
- #define LINADV           // Enable linear advance.
- #define FANSCALING       // Enabled PID FAN SCALING
- #define EXTRUSIONSCALING // Enabled PID EXTRUSION SCALING
- #define ACTIONCOMMANDS   // Enable ACTION COMMANDS for use with octoprint
- #define MESHVALIDATE     // Enable G26 mesh validation does not work well in my testing
- #define PROGRESSINFO     // Enable print progress info display
-#endif
-
 //Used to switch the default board of the model selected in step 1
 //#define CUSTOMBOARD // Enable Custom Board
 #if ENABLED (CUSTOMBOARD)
   #define MOTHERBOARD BOARD_BTT_SKR_V1_3  // CTRL+Click to jump to board list & also set the correct default_env in platfomio.ini
-  //#define MCU32 // Enable to turn on 32bit features
 #endif
 
 //Framework for adding a new printer to this config
@@ -196,7 +186,7 @@
 #endif
 
 //MCU32 board models
-#if ANY(GTA30, GTE180, GTM201, GTD200, BEAR, BREAR_TURBO)
+#if ANY(GTA30, GTE180, GTM201, GTD200, BEAR, BREAR_TURBO, CUSTOMBOARD)
   #define MCU32
 #endif
 
@@ -208,6 +198,16 @@
 //AT1280 board models (use only if disabled for at1280)
 #if ENABLED (ENDER3) && DISABLED (CUSTOMBOARD)
   #define AT1280
+#endif
+
+#if DISABLED (AT1280) // disabled only on 1280 boards other wise enabled
+ #define LINADV           // Enable linear advance.
+ #define FANSCALING       // Enabled PID FAN SCALING
+ #define EXTRUSIONSCALING // Enabled PID EXTRUSION SCALING
+ #define ACTIONCOMMANDS   // Enable ACTION COMMANDS for use with octoprint
+ #define MESHVALIDATE     // Enable G26 mesh validation does not work well in my testing
+ #define PROGRESSINFO     // Enable print progress info display
+
 #endif
 
 //Bed clip logic - use mesh inset or min probe edge to avoid clips not both

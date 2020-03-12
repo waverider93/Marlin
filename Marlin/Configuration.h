@@ -1744,10 +1744,10 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-#if ENABLED (AT1280)
-  #define AUTO_BED_LEVELING_BILINEAR
-#else
+#if DISABLED (AT1280)
   #define AUTO_BED_LEVELING_UBL
+#else  
+  #define AUTO_BED_LEVELING_BILINEAR  
 #endif
 //#define MESH_BED_LEVELING
 
@@ -2220,7 +2220,8 @@
  * just remove some extraneous menu items to recover space.
  */
 //#define NO_LCD_MENUS
-#if ENABLED(AT1280)
+#if DISABLED (AT1280)
+#else
   #define SLIM_LCD_MENUS   //removes most advanced configuration menus
 #endif
 
