@@ -45,21 +45,23 @@
 //----------------------------------------------------------------------------------------------------
 //SKR Boards - vscode: default_envs = #default_envs = LPC1768
 //Select 1 board
-//#define BEAR        // Bear MK3/MK3s & Variants - tesing 
-//#define BEAR_TURBO  // Bear MK3/MK3s Turbo & Variants default_envs = #default_envs = LPC1769
+//#define BEAR        // Bear MK3/MK3s & Variants - tesing
 
-//Switch from Bear MK3 to MK2 
+//vscode: default_envs = #default_envs = LPC1769
+//#define BEAR_TURBO  // Bear MK3/MK3s Turbo & Variants - testing
+
+//(Bear & Bear_Turbo)Switch from Bear MK3 to MK2.5 
 //#define MK25        // Enable to set 12V for Bear MK2.5
 
-//Z mod pick only 1 or none for stock
+//(Bear & Bear_Turbo)Z mod pick only 1 or none for stock
 //#define Z320        // Enable to change Zmax to 320  
 //#define Z420        // Enable to change Zmax to 420 
 
-//Extruder mod pick only 1 or none for stock
+//(Bear & Bear_Turbo)Extruder mod pick only 1 or none for stock
 //#define BMG18       // BMG E 1.8 stepper
 //#define BMG9        // BMG E 0.9 stepper
 
-//XY mod pick only 1 or none for stock
+//(Bear & Bear_Turbo)XY mod pick only 1 or none for stock
 //#define GREYBEAR    // XY 0.9 stepper
 
 //-----------------------------------------------------------------------------------------------------
