@@ -43,7 +43,7 @@
 //#define ENDER3      // ENDER3 & Variants - testing 
 
 //----------------------------------------------------------------------------------------------------
-//SKR Boards - vscode: default_envs = #default_envs = LPC1768
+//SKR 1.4 Boards - vscode: default_envs = #default_envs = LPC1768
 //Select 1 board
 //#define BEAR        // Bear MK3/MK3s & Variants - tesing
 
