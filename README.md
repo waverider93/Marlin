@@ -7,7 +7,7 @@ to promote synergy and a more uniform experience.
 
 This being said i am a marlin developer and do submit my work upstream (vanilla) assuming they wish to accept it, this is my flavor of marlin (chocolate swirl with sprinkles). (Dont attempt to mix upstream files with my fork)
 
-Currently integrated models include Supported Models: :A10(C/CT/D/E3/M/T)/A20(C/CT/D/E3/M/T)/A30(C/CT/D/E3/M/T)/I3PRO(A/B/C/W/X/C/CT/D/E3/M/T)/E180/D200/M201/Ender3 & there variants hundreds of combinations + more will be added.
+Currently integrated models include Supported Models: :A10(C/CT/D/E3/M/T)/A20(C/CT/D/E3/M/T)/A30(C/CT/D/E3/M/T)/I3PRO(A/B/C/W/X/C/CT/D/E3/M/T)/E180/D200/M201/Ender3/Bear & there variants hundreds of combinations + more will be added.
 
 If you expect this fork to be maintained and technical support for it, I’m going to need your support in return to make it all happen.
 
