@@ -1663,7 +1663,9 @@
 //
 // G60/G61 Position Save and Return
 //
-#define SAVED_POSITIONS 1         // Each saved position slot costs 12 bytes
+#if DISABLED (AT1280)
+  #define SAVED_POSITIONS 2         // Each saved position slot costs 12 bytes
+#endif
 
 //
 // G2/G3 Arc Support

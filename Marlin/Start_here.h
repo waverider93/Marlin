@@ -197,7 +197,7 @@
   #define AT2560
 #endif
 
-//128kb or smaller boards models
+//128kb or smaller boards models only if disabled
 #if ENABLED (ENDER3) && DISABLED (CUSTOMBOARD)
   #define AT1280
 #endif

@@ -1411,8 +1411,8 @@
 #define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
-#define Z_PROBE_OFFSET_RANGE_MIN -20 // If your z probe offset is greater then -5 i would be shocked if it worked
-#define Z_PROBE_OFFSET_RANGE_MAX  20 // Z probe offset should always be - there are very few rare cases where it would be +
+#define Z_PROBE_OFFSET_RANGE_MIN -5 // If your z probe offset is greater then -5 i would be shocked if it worked
+#define Z_PROBE_OFFSET_RANGE_MAX  0 // Z probe offset should always be - there are very few rare cases where it would be +
 
 // Enable the M48 repeatability test to test probe accuracy
 #if ANY(BLTOUCH, FIX_MOUNTED_PROBE, TOUCH_MI_PROBE, SOLENOID_PROBE, RACK_AND_PINION_PROBE, NOZZLE_AS_PROBE)
@@ -2083,7 +2083,7 @@
  * Attention: EXPERIMENTAL. G-code arguments may change.
  *
  */
-#if DISABLED (AT1290)
+#if DISABLED (AT1280)
   #define NOZZLE_CLEAN_FEATURE
 #if ENABLED(NOZZLE_CLEAN_FEATURE)
   // Default number of pattern repetitions
