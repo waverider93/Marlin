@@ -187,29 +187,28 @@
   #define DIRECTDRIVE
 #endif
 
-//MCU32 board models
+//32bit boards models
 #if ANY(GTA30, GTE180, GTM201, GTD200, BEAR, BREAR_TURBO, CUSTOMBOARD)
   #define MCU32
 #endif
 
-//AT2560 board models
+//256kb boards models
 #if ANY(GTA10, GTA20, MECREATOR2, I3PROA, I3PROB, I3PROC, I3PROW, I3PROX)
   #define AT2560
 #endif
 
-//AT1280 board models (use only if disabled for at1280)
+//128kb or smaller boards models
 #if ENABLED (ENDER3) && DISABLED (CUSTOMBOARD)
   #define AT1280
 #endif
 
-#if DISABLED (AT1280) // disabled only on 1280 boards other wise enabled
+#if DISABLED (AT1280)
  #define LINADV           // Enable linear advance.
  #define FANSCALING       // Enabled PID FAN SCALING
  #define EXTRUSIONSCALING // Enabled PID EXTRUSION SCALING
  #define ACTIONCOMMANDS   // Enable ACTION COMMANDS for use with octoprint
  #define MESHVALIDATE     // Enable G26 mesh validation does not work well in my testing
  #define PROGRESSINFO     // Enable print progress info display
-
 #endif
 
 //Bed clip logic - use mesh inset or min probe edge to avoid clips not both
@@ -287,13 +286,13 @@
 #if ENABLED (TMCCHIPS) && DISABLED (MULTIEXTRUDER) || DISABLED (TMCCHIPS) && ENABLED (MULTIEXTRUDER)
   #define INVERTE     // Invert E direction disabe if wrong direction - Geared exturders invert E (stock)
 #else
-  //#define INVERTE // Enable to force on
+  //#define INVERTE  // Enable to force on
 #endif 
 
 #if ENABLED (TMCCHIPS)
   #define INVERTXYZ   // Invert XYZ direction disable if wrong direction.
 #else
-  //#define INVERTXYZ   // Enable to force on 
+  //#define INVERTXYZ // Enable to force on 
 #endif
 
 #define VALID_START

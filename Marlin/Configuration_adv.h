@@ -1758,7 +1758,7 @@
 #define BLOCK_BUFFER_SIZE BUFSIZE // SD,LCD,Buttons take more memory, block buffer needs to be smaller'
 
 #if ENABLED (MCU32)
-  #define BUFSIZE 64     // buffer
+  #define BUFSIZE 32     // buffer
 #else
   #define BUFSIZE 16     // buffer
 #endif  

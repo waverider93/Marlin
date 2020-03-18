@@ -531,7 +531,7 @@
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
 #if ANY (BEAR, BEAR_TURBO)
-#define MAXHOTENDTEMP 275  // Max hotend temp 260
+#define MAXHOTENDTEMP 275  // Max hotend temp 275
 #else
 #define MAXHOTENDTEMP 260  // Max hotend temp 260
 #endif
@@ -1890,7 +1890,7 @@
  * Commands to execute at the end of G29 probing.
  * Useful to retract or move the Z probe out of the way.
  */
-#define Z_PROBE_END_SCRIPT "G28XY"
+#define Z_PROBE_END_SCRIPT "G1 X0 Y0"
 
 
 // @section homing
@@ -2083,8 +2083,8 @@
  * Attention: EXPERIMENTAL. G-code arguments may change.
  *
  */
-//#define NOZZLE_CLEAN_FEATURE
-
+#if DISABLED (AT1290)
+  #define NOZZLE_CLEAN_FEATURE
 #if ENABLED(NOZZLE_CLEAN_FEATURE)
   // Default number of pattern repetitions
   #define NOZZLE_CLEAN_STROKES  5
@@ -2094,8 +2094,8 @@
 
   // Specify positions for each tool as { { X, Y, Z }, { X, Y, Z } }
   // Dual hotend system may use { {  -20, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) },  {  420, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) }}
-  #define NOZZLE_CLEAN_START_POINT { {  30, 30, (Z_MIN_POS + 1) } }
-  #define NOZZLE_CLEAN_END_POINT   { { 100, 60, (Z_MIN_POS + 1) } }
+  #define NOZZLE_CLEAN_START_POINT { {  0, 0, (Z_MIN_POS + 1) } }
+  #define NOZZLE_CLEAN_END_POINT   { { 10, 0, (Z_MIN_POS + 1) } }
 
   // Circular pattern radius
   #define NOZZLE_CLEAN_CIRCLE_RADIUS 6.5
@@ -2109,6 +2109,7 @@
 
   // Enable for a purge/clean station that's always at the gantry height (thus no Z move)
   #define NOZZLE_CLEAN_NO_Z
+#endif
 #endif
 
 /**
