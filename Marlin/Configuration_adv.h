@@ -609,7 +609,7 @@
 #define Z_HOME_BUMP_MM 2
 #define HOMING_BUMP_DIVISOR { 2, 2, 4 }  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 //#define QUICK_HOME                     // If homing includes X and Y, do a diagonal move initially
-//#define HOMING_BACKOFF_MM { 5, 5, 0 }  // (mm) Move away from the endstops after homing
+#define HOMING_BACKOFF_MM { 5, 5, 0 }  // (mm) Move away from the endstops after homing
 #else
 #define X_HOME_BUMP_MM 5
 #define Y_HOME_BUMP_MM 5
@@ -786,7 +786,7 @@
 //#define HOME_AFTER_DEACTIVATE  // Require rehoming after steppers are deactivated
 
 // Minimum time that a segment needs to take if the buffer is emptied
-#define DEFAULT_MINSEGMENTTIME        60000   // (ms)
+#define DEFAULT_MINSEGMENTTIME        20000   // (ms)
 
 // Slow down the machine if the look ahead buffer is (by default) half full.
 // Increase the slowdown divisor for larger buffer sizes.
@@ -1247,7 +1247,7 @@
  * By default an onboard SD card reader may be shared as a USB mass-
  * storage device. This option hides the SD card from the host PC.
  */
-#define NO_SD_HOST_DRIVE   // Disable SD Card access over USB (for security).
+//#define NO_SD_HOST_DRIVE   // Disable SD Card access over USB (for security).
 
 /**
  * Additional options for Graphical Displays
@@ -1554,11 +1554,11 @@
  */
 #if ENABLED (LINADV)
   #define LIN_ADVANCE
-#endif
 #if ENABLED(LIN_ADVANCE)
   //#define EXTRA_LIN_ADVANCE_K   // Enable for second linear advance constants
   #define LIN_ADVANCE_K 0       // Unit: mm compression per 1mm/s extruder speed
   //#define LA_DEBUG            // If enabled, this will generate debug information output over USB.
+#endif
 #endif
 
 // @section leveling
