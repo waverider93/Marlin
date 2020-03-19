@@ -25,8 +25,6 @@ Support Forum: http://www.vertshobbies.com/
 
 Patreon: https://www.patreon.com/vertabreaker
 
-Paypal: https://www.paypal.me/vertabreaker
-
 Thingivese: https://www.thingiverse.com/Vertabreaker
 
 YouTube Guides: http://youtube.com/c/verta
