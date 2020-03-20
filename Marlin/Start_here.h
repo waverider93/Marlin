@@ -232,7 +232,7 @@
 #elif ENABLED (MULTIEXTRUDER) && ANY(TOUCHPROBE, FMP) && ANY (GTA10, GTA20)
   #define NOZZLE_TO_PROBE_OFFSET { -40, 0, 0 }  // Nozzle To Probe offset XYZ A10M+T/A20M+T - this is what it is on my test machines yours could differ
 #elif ANY (BEAR, BEAR_TURBO) && ENABLED (TOUCHPROBE)
-  #define NOZZLE_TO_PROBE_OFFSET { 27, 10, 0 } 
+  #define NOZZLE_TO_PROBE_OFFSET { 26, 10, 0 } 
 #elif ANY (BEAR, BEAR_TURBO)
   #define NOZZLE_TO_PROBE_OFFSET { 23, 5, 0 }  
 #else
