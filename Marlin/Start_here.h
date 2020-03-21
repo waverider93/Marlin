@@ -187,6 +187,7 @@
   #define DIRECTDRIVE
 #endif
 
+//Board types----------------------------------------------------------------------
 //32bit boards models
 #if ANY(GTA30, GTE180, GTM201, GTD200, BEAR, BREAR_TURBO, CUSTOMBOARD)
   #define MCU32
@@ -201,6 +202,7 @@
 #if ENABLED (ENDER3) && DISABLED (CUSTOMBOARD)
   #define AT1280
 #endif
+//----------------------------------------------------------------------------------
 
 #if DISABLED (AT1280)
  #define LINADV           // Enable linear advance.
