@@ -258,29 +258,35 @@
 #endif
 
 //Steps selection logic
+#if DISABLED (NEWMODEL)
 #if DISABLED (MULTIEXTRUDER) && DISABLED (BEAR) && DISABLED (BEAR_TURBO)
   #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 95 }  // ungeared extruder found on a10/a20/a30/i3pro
   //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 800, 95 } 
   //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 2560, 95 } // M8 Z rod steps 2560 found on old I3pro
 #elif ENABLED (MULTIEXTRUDER) && DISABLED (BEAR) && DISABLED (BEAR_TURBO)
-    #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 430 } // geared extruder found on M & T variants
-    //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 800, 430 } 
-    //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 2560, 430 } // M8 Z rod steps 2560 found on old I3pro  
+  #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 430 } // geared extruder found on M & T variants
+  //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 800, 430 } 
+  //#define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 2560, 430 } // M8 Z rod steps 2560 found on old I3pro 
 #endif
 
-  #if ENABLED (GREYBEAR) && ENABLED (BMG18) && ANY (BEAR, BEAR_TURBO) 
+#if ENABLED (GREYBEAR) && ENABLED (BMG18) && ANY (BEAR, BEAR_TURBO) 
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 400, 830 }  // BMG1.8 + grey
-  #elif ENABLED (BMG18) && ANY (BEAR, BEAR_TURBO)  
+#elif ENABLED (BMG18) && ANY (BEAR, BEAR_TURBO)  
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 830 }  // BMG1.8
-  #elif ENABLED (GREYBEAR) && ENABLED (BMG9) && ANY (BEAR, BEAR_TURBO)
+#elif ENABLED (GREYBEAR) && ENABLED (BMG9) && ANY (BEAR, BEAR_TURBO)
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 400, 1660 }  // BMG 0.9 +grey
-  #elif ENABLED (BMG9) && ANY (BEAR, BEAR_TURBO) 
+#elif ENABLED (BMG9) && ANY (BEAR, BEAR_TURBO) 
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 1660 }  // BMG 0.9
-  #elif ENABLED (GREYBEAR) && ANY (BEAR, BEAR_TURBO) 
+#elif ENABLED (GREYBEAR) && ANY (BEAR, BEAR_TURBO) 
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 200, 200, 400, 280 }  // stock + grey  
-  #elif ANY (BEAR, BEAR_TURBO) 
+#elif ANY (BEAR, BEAR_TURBO) 
     #define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 280 }  //stock
-  #endif
+#endif
+#endif
+
+#if ENABLED (NEWMODEL) 
+  #define DEFAULT_AXIS_STEPS_PER_UNIT  { 80, 80, 400, 95 }
+#endif
 
 //Motor direction logic
 #if ENABLED (TMCCHIPS) && DISABLED (MULTIEXTRUDER) || DISABLED (TMCCHIPS) && ENABLED (MULTIEXTRUDER)

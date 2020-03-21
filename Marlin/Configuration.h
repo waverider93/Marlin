@@ -463,24 +463,15 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#if ANY (BEAR, BEAR_TURBO)
-  #define TEMP_SENSOR_0 5
-#else
-  #define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 5
+
+#if ENABLED (DUALEX)
+  #define TEMP_SENSOR_1 5
 #endif
 
-#if ANY (BEAR, BEAR_TURBO) && ENABLED (DUALEX)
-  #define TEMP_SENSOR_1 5
-#elif ENABLED (DUALEX)
-  #define TEMP_SENSOR_1 1
-#endif
-
-#if ANY (BEAR, BEAR_TURBO) && ENABLED (TRIEX)
+#if ENABLED (TRIEX)
   #define TEMP_SENSOR_1 5
   #define TEMP_SENSOR_1 5
-#elif ENABLED (TRIEX)
-  #define TEMP_SENSOR_1 1
-  #define TEMP_SENSOR_2 1
 #endif
 
 #define TEMP_SENSOR_3 0
@@ -589,11 +580,7 @@
   #elif ANY(MIX, MIXT, CYCLOPS, CYCLOPST, DUELEX, GTA30, GTE180, GTD200)
     #define  DEFAULT_Kp 45.80
     #define  DEFAULT_Ki 3.61
-    #define  DEFAULT_Kd 145.39
-  #elif ENABLED (ENDER3)
-    #define DEFAULT_Kp 21.73
-    #define DEFAULT_Ki 1.54
-    #define DEFAULT_Kd 76.55  
+    #define  DEFAULT_Kd 145.39 
   #elif ANY (BEAR, BEAR_TURBO)
     #define DEFAULT_Kp 16.13
     #define DEFAULT_Ki 1.16
