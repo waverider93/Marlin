@@ -587,9 +587,9 @@
     #define  DEFAULT_Ki 0.74
     #define  DEFAULT_Kd 74.98
   #elif ANY(MIX, MIXT, CYCLOPS, CYCLOPST, DUELEX, GTA30, GTE180, GTD200)
-    #define  DEFAULT_Kp 17.74
-    #define  DEFAULT_Ki 1.90
-    #define  DEFAULT_Kd 41.41
+    #define  DEFAULT_Kp 45.80
+    #define  DEFAULT_Ki 3.61
+    #define  DEFAULT_Kd 145.39
   #elif ENABLED (ENDER3)
     #define DEFAULT_Kp 21.73
     #define DEFAULT_Ki 1.54

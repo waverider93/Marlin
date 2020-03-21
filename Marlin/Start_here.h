@@ -13,7 +13,7 @@
 
 //-------------------------------------------------------------------------------------------------------------------------
 // Remove // to enable - add // to disable                                                                                |
-// Complete steps below > build > flash, its that simple there are hundreds of combinations & more being added.        |
+// Complete steps below > build > flash, its that simple there are hundreds of combinations & more being added.           |
 // Post flash initilize the eeprom - M502+M500 or menu option load failsafe+store settings.                               |
 // Guides on my youtube, when you watch/like/subscribe/share it helps support the channel and helps it grow.              | 
 // Looking for help or have a question? join us on the discord or post on the forums.                                     |
