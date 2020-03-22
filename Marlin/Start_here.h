@@ -1,6 +1,6 @@
 #pragma once
 #define SHORT_BUILD_VERSION "2+ Build 488"
-#define CUSTOM_MACHINE_NAME "3D Printer"
+#define CUSTOM_MACHINE_NAME "Addis"
 
 // Ctrl+click to open links
 // Youtube             "https://youtube.com/verta"
@@ -23,8 +23,8 @@
 
 //(Step 1) enable 1 base model/frame
 //GT2560 Boards - vscode: default_envs = mega2560 in platformio.ini
-#define GTA10       // A10 & Variants
-//#define GTA20       // A20 & Variants
+//#define GTA10       // A10 & Variants
+#define GTA20       // A20 & Variants
 //#define MECREATOR2  // Mecreator2 & Variants     
 //#define I3PROA      // I3ProA & Variants
 //#define I3PROB      // I3PROB & Variants
@@ -70,7 +70,7 @@
 //#define MIX      // Enable Mixing    2 in 1 - 1 Virtual Stepper (M)
 //#define MIXT     // Enable Mixing    3 in 1 - 1 Virtual Stepper (T)
 //#define CYCLOPS  // Enable Cyclops   2 in 1 - 2 Physical Stepper (C) 
-//#define CYCLOPST // Enable Cyclops   3 in 1 - 3 Physical Stepper (CT)
+#define CYCLOPST // Enable Cyclops   3 in 1 - 3 Physical Stepper (CT)
 //#define DUALEX   // 2 Extruders      2 in 2 - 2 Physical Stepper (D) 
 //#define TRIEX    // 3 Extruders      3 in 3 - 3 Physical Stepper (E3)
 
@@ -154,7 +154,7 @@
 //Optional features
 //#define PLR              // Enabled power loss resume - Only functions from SDcard
 //#define RUNOUT           // Enable filament runout sensor - Only If you have them and want to use them
-//#define BEDCLIPS         // Enable to avoid bed clips (manual or probe) - Only If you have them and want to use them
+#define BEDCLIPS         // Enable to avoid bed clips (manual or probe) - Only If you have them and want to use them
 //#define CASELIGHT        // Enable case light menu if board has led header.
 
 //Disable to save resources on hardware you dont use
