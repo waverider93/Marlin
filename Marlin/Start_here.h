@@ -142,7 +142,9 @@
 //#define CR10DISPLAY     // Enable cr10 style lcd
 
 //(Fan Mod) enable 1 (Mod) to override default FAN PWM
-//#define MECHFAN     // Enable Mechatronics fan pwm
+//#define MECHFAN     // Enable Mechatronics fan 80 pwm
+//#define RADIALFAN   // Enable Radial fan 50 pwm
+//#define BEAR_FAN    // Enable fan 20 pwm on when not a bear model 
 
 //------------------------------
 //Optional settings & features |
