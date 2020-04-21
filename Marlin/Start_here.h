@@ -1,6 +1,6 @@
 #pragma once
 #define SHORT_BUILD_VERSION "2+ Build 488"
-#define CUSTOM_MACHINE_NAME "Addis"
+#define CUSTOM_MACHINE_NAME "Creator"
 
 // Ctrl+click to open links
 // Youtube             "https://youtube.com/verta"
@@ -86,7 +86,7 @@
 //#define TB6560     // Enable TB6560  all drivers
 //#define TB6600     // Enable TB6600  all drivers
 
-//#define TMC2208S   // Enable TMC2208 Standalone all drivers
+#define TMC2208S   // Enable TMC2208 Standalone all drivers
 //#define TMC2209S   // Enable TMC2209 Standalone all drivers
 //#define TMC2130S   // Enable TMC2130 Standalone all drivers
 //#define TMC2160S   // Enable TMC2160 Standalone all drivers
@@ -128,7 +128,7 @@
 #endif
 
 //(Probe Mod) enable 1 (Mod) probe type none = manual (stock) - No GTM32 probe support yet
-//#define TOUCHPROBE  // Enable Touch Type Probe (Bltouch / 3Dtouch)
+#define TOUCHPROBE  // Enable Touch Type Probe (Bltouch / 3Dtouch)
 //#define FMP         // Enable Fixed Mounted Type Probe (Capacitive / Inductive)
 //#define PINDA       // Enable Pinda Type Probe
 
